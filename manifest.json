@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "mnxpack_manifest_v1",
+  "id": "hands-on",
+  "version": "0.1.0",
+  "kind": "experience",
+  "label": "Hands On",
+  "description": "Learn by doing. Move a curve, place the bands on a gel, knock out part of a pathway, choose the controls, read a spectrum, find the error or sort the ideas. You commit to a guess first, then see the real result beside it. Private study pack: the activities come from university course material.",
+  "tagline": "Guess first. Then turn the dials.",
+  "icon": "fa-solid fa-hand-pointer",
+  "author": "Private pack: its content comes from university course material",
+  "subjects": [
+    "biochemistry",
+    "physical chemistry",
+    "spectroscopy",
+    "reaction kinetics"
+  ],
+  "knowledgeBinding": {
+    "mode": "none"
+  },
+  "surfaces": {},
+  "practice": {
+    "version": 1,
+    "catalogue": "assets/practice/catalogue.json"
+  },
+  "permissions": [
+    "storage:local"
+  ],
+  "settings": [
+    {
+      "id": "level",
+      "label": "How hard to ask",
+      "description": "Normally each topic starts easy and moves up as you get rounds right: which way it goes, then how far, then the number with its unit. Choose one to stay on it.",
+      "type": "choice",
+      "default": "auto",
+      "options": [
+        {
+          "value": "auto",
+          "label": "Follow how I am doing"
+        },
+        {
+          "value": "0",
+          "label": "Which way"
+        },
+        {
+          "value": "1",
+          "label": "How far"
+        },
+        {
+          "value": "2",
+          "label": "The number"
+        }
+      ]
+    }
+  ],
+  "engines": {
+    "mnxSdk": "1.0.0"
+  },
+  "entry": {
+    "logicalPath": "code/main.cjs"
+  },
+  "assets": [
+    {
+      "logicalPath": "assets/practice/catalogue.json",
+      "mimeType": "application/json"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "title": "Sort: a run ended early reports valid false and no criteria",
+  "surface": "standalone",
+  "settings": {
+    "level": "1"
+  },
+  "drive": [
+    {
+      "click": "[data-activity=ho-sort-033-cytochrome-p450-laccase]"
+    },
+    {
+      "waitFor": "[data-action=bin-0]"
+    },
+    {
+      "click": "[data-action=end]"
+    },
+    {
+      "click": "[data-action=confirm-end]"
+    },
+    {
+      "expect": "complete"
+    }
+  ],
+  "expectResult": {
+    "completed": false,
+    "practice": {
+      "version": 1,
+      "activityId": "ho-sort-033-cytochrome-p450-laccase",
+      "valid": false,
+      "criteria": []
+    }
+  }
+}

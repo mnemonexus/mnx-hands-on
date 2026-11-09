@@ -1,0 +1,213 @@
+{
+  "id": "ho-network-dna-damage",
+  "title": "DNA damage and the p53-p21 checkpoint",
+  "summary": "Take a cell that has just been irradiated, change one part of its checkpoint, and say what happens to the marked parts. Then watch it travel.",
+  "level": 2,
+  "minutes": 5,
+  "terms": [
+    "DNA damage response",
+    "p53-p21 pathway",
+    "cell cycle checkpoint",
+    "cell cycle arrest",
+    "cyclin-Cdk complex",
+    "Cdk inhibitor",
+    "ATM and Chk2",
+    "guardian of the genome"
+  ],
+  "skills": [
+    "dna-damage-checkpoints"
+  ],
+  "family": "dna-damage-network",
+  "cite": [
+    "057:pp1",
+    "057:pp2",
+    "057:pp3",
+    "057:pp4",
+    "057:pp5",
+    "057:pp7",
+    "057:pp9",
+    "057:cs3",
+    "057:fb4",
+    "057:fb5",
+    "057:fb7",
+    "057:pf5",
+    "057:ck6",
+    "057:dd2",
+    "057:dd4"
+  ],
+  "spec": {
+    "story": "A cell just after X-rays. The checkpoint has fired and the cycle is held.",
+    "nodes": [
+      {
+        "id": "dmg",
+        "label": "DNA damage",
+        "x": 12,
+        "y": 50,
+        "level": "high"
+      },
+      {
+        "id": "atm",
+        "label": "ATM sensor",
+        "x": 37,
+        "y": 50,
+        "note": "ATR also senses damage; only ATM is drawn, as in the lecture's X-ray example."
+      },
+      {
+        "id": "chk2",
+        "label": "Chk2 kinase",
+        "x": 37,
+        "y": 16,
+        "note": "Chk1 and Chk2 also inhibit Cdc25 directly in cells, a quicker route that is not in the lecture and not drawn."
+      },
+      {
+        "id": "p53",
+        "label": "Active p53",
+        "x": 62,
+        "y": 16,
+        "note": "p53 also switches on other genes, such as those for apoptosis. Only the p21 route is shown."
+      },
+      {
+        "id": "p21",
+        "label": "p21 protein",
+        "x": 87,
+        "y": 16
+      },
+      {
+        "id": "cdc25",
+        "label": "Cdc25 phosphatase",
+        "x": 37,
+        "y": 84
+      },
+      {
+        "id": "cdk",
+        "label": "Cyclin-Cdk activity",
+        "x": 62,
+        "y": 50
+      },
+      {
+        "id": "prog",
+        "label": "Cell cycle progression",
+        "x": 87,
+        "y": 84
+      }
+    ],
+    "edges": [
+      {
+        "from": "dmg",
+        "to": "atm",
+        "sign": "+",
+        "reason": "DNA breaks from damage such as X-rays activate the ATM sensor.",
+        "claim": "pp1"
+      },
+      {
+        "from": "atm",
+        "to": "chk2",
+        "sign": "+",
+        "reason": "The sensor passes the signal on and Chk2 kinase is activated.",
+        "claim": "pp2"
+      },
+      {
+        "from": "chk2",
+        "to": "p53",
+        "sign": "+",
+        "reason": "Chk2 phosphorylates p53, which releases Mdm2 so p53 is stable and active.",
+        "claim": "pf5"
+      },
+      {
+        "from": "p53",
+        "to": "p21",
+        "sign": "+",
+        "reason": "Active p53 binds the regulatory region of the p21 gene and switches it on.",
+        "claim": "pp4"
+      },
+      {
+        "from": "p21",
+        "to": "cdk",
+        "sign": "-",
+        "reason": "p21 inserts into the ATP-binding site of the Cdk, so the cyclin-Cdk complex is held inactive.",
+        "claim": "pp5"
+      },
+      {
+        "from": "cdc25",
+        "to": "cdk",
+        "sign": "+",
+        "reason": "Cdc25 removes the inhibitory phosphate, which leaves the Cdk active.",
+        "claim": "fb4"
+      },
+      {
+        "from": "cdk",
+        "to": "prog",
+        "sign": "+",
+        "reason": "Active cyclin-Cdk complexes drive the cell on through the cycle.",
+        "claim": "cs3"
+      },
+      {
+        "from": "cdk",
+        "to": "cdc25",
+        "notModelled": "Active M-Cdk switches on Cdc25, which switches on M-Cdk. A loop like that is a switch with two stable states, which levels cannot settle on."
+      }
+    ],
+    "outputs": [
+      "p21",
+      "cdk",
+      "prog"
+    ],
+    "perturbations": [
+      {
+        "id": "nop53",
+        "node": "p53",
+        "kind": "remove",
+        "label": "Delete the p53 gene",
+        "outputs": [
+          "atm",
+          "p21",
+          "cdk"
+        ],
+        "covers": ["057:pp4", "057:pp5"]
+      },
+      {
+        "id": "noatm",
+        "node": "atm",
+        "kind": "block",
+        "label": "Block ATM",
+        "outputs": [
+          "chk2",
+          "p53",
+          "cdk"
+        ],
+        "covers": ["057:pp1", "057:pp2"]
+      },
+      {
+        "id": "repair",
+        "node": "dmg",
+        "kind": "remove",
+        "label": "Repair the damage",
+        "outputs": [
+          "atm",
+          "p53",
+          "prog"
+        ],
+        "covers": ["057:pp1"]
+      },
+      {
+        "id": "nop21",
+        "node": "p21",
+        "kind": "remove",
+        "label": "Delete the p21 gene",
+        "outputs": [
+          "p53",
+          "cdk",
+          "prog"
+        ],
+        "covers": ["057:pp5", "057:pp7"]
+      },
+      {
+        "id": "no25",
+        "node": "cdc25",
+        "kind": "block",
+        "label": "Block Cdc25",
+        "covers": ["057:pp7"]
+      }
+    ]
+  }
+}

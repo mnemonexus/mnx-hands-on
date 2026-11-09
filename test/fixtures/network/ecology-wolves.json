@@ -1,0 +1,22 @@
+{
+  "story": "A valley with a few wolves.",
+  "nodes": [
+    { "id": "wolves", "label": "Wolves", "x": 12, "y": 50, "level": "normal" },
+    { "id": "deer", "label": "Deer", "x": 37, "y": 50, "level": "high" },
+    { "id": "grass", "label": "Grass and saplings", "x": 62, "y": 50, "level": "high" },
+    { "id": "birds", "label": "Ground-nesting birds", "x": 87, "y": 50 },
+    { "id": "hunters", "label": "Hunting", "x": 37, "y": 16, "level": "off" }
+  ],
+  "edges": [
+    { "from": "wolves", "to": "deer", "sign": "-", "reason": "Wolves kill deer." },
+    { "from": "hunters", "to": "wolves", "sign": "-", "reason": "Hunters shoot wolves." },
+    { "from": "deer", "to": "grass", "sign": "-", "reason": "Deer graze the grass and saplings." },
+    { "from": "grass", "to": "birds", "sign": "+", "reason": "Birds nest in the long grass." }
+  ],
+  "outputs": ["deer", "grass", "birds"],
+  "perturbations": [
+    { "id": "cull", "node": "hunters", "kind": "more", "label": "Hunt the wolves" },
+    { "id": "pack", "node": "wolves", "kind": "more", "label": "Bring in more wolves" },
+    { "id": "fence", "node": "deer", "kind": "block", "label": "Fence the deer out", "outputs": ["grass", "birds"] }
+  ]
+}

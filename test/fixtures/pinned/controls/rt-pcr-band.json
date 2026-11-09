@@ -1,0 +1,38 @@
+{
+  "id": "ho-controls-rt-pcr-band",
+  "title": "A clear RT-PCR band: which controls show what it means?",
+  "summary": "An RT-PCR gives a band from the test sample, and three explanations could account for it. Choose which extra tubes to run so that the band can be trusted, then see which explanations your choice tells apart.",
+  "level": 2,
+  "minutes": 5,
+  "terms": ["RT-PCR", "reverse transcriptase", "cDNA", "negative control", "positive control", "genomic DNA contamination", "gene-specific primers", "experimental controls"],
+  "skills": ["choose-controls"],
+  "family": "rt-pcr-controls",
+  "cite": ["000:r20", "000:r23", "000:r24", "000:r25", "000:r26", "000:r27", "000:B4.1", "000:B4.3", "000:B4.6", "000:E.18", "000:B4.4", "000:B4.n"],
+  "covers": ["000:r27"],
+  "spec": {
+    "result": {
+      "title": "An RT-PCR with primers for gene X gives a clear band from the test sample.",
+      "detail": "The band is meant to show that X mRNA was expressed. Three explanations could account for it."
+    },
+    "hypotheses": [
+      { "id": "real", "name": "The cells really expressed X mRNA" },
+      { "id": "dna", "name": "The RNA sample was contaminated with ordinary DNA" },
+      { "id": "carry", "name": "Something other than the sample's cDNA was copied, such as contaminated reagents" }
+    ],
+    "conditions": [
+      { "id": "no-rt", "name": "Leave out the reverse transcriptase in step 2", "reads": "PCR band" },
+      { "id": "no-cdna", "name": "Leave out the cDNA in step 4", "reads": "PCR band" },
+      { "id": "long", "name": "Run the PCR product on the gel for longer before reading it", "reads": "PCR band" },
+      { "id": "known", "name": "Use primers for a gene known to be expressed", "reads": "PCR band" },
+      { "id": "again", "name": "Run the test sample again, unchanged", "reads": "PCR band" }
+    ],
+    "outcomes": {
+      "no-rt": { "real": "none", "dna": "signal", "carry": "signal" },
+      "no-cdna": { "real": "none", "dna": "none", "carry": "signal" },
+      "long": { "real": "signal", "dna": "signal", "carry": "signal" },
+      "known": { "real": "signal", "dna": "signal", "carry": "signal" },
+      "again": { "real": "signal", "dna": "signal", "carry": "signal" }
+    },
+    "lesson": "With no reverse transcriptase only contaminating DNA can still be copied, and with no cDNA only the reagents can, so those two tubes tell the three explanations apart. Primers for a known gene, a repeat, or a longer run of the gel give the same band whatever is true."
+  }
+}

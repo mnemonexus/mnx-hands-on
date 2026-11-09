@@ -1,0 +1,7 @@
+{
+  "mode": "negative",
+  "massType": "monoisotopic",
+  "mass": { "min": 1200, "max": 6000, "name": "a synthetic sample" },
+  "charges": [2, 7],
+  "tasks": ["deconvolute"]
+}

@@ -1,0 +1,71 @@
+{
+  "id": "ho-grow-057-p53-p21-arrest",
+  "title": "X-rays, p53 and p21: where the damaged culture stops",
+  "summary": "A culture is given X-rays. With p53 working the cycle is held; with p53 or p21 missing it is not, or only partly. Say where the cells gather, what the DNA content profile looks like, and how fast.",
+  "level": 3,
+  "minutes": 6,
+  "terms": ["p53-p21 pathway", "DNA damage response", "cell cycle arrest", "p21 Cdk inhibitor", "guardian of the genome", "ATM and Chk2", "Cdk2 and entry into S phase", "X-rays", "DNA damage checkpoint"],
+  "skills": ["dna-damage-checkpoints"],
+  "family": "p53-p21-arrest",
+  "cite": ["057:pf3", "057:pf4", "057:pf6", "057:pp1", "057:pp2", "057:pp3", "057:pp4", "057:pp5", "057:pp7", "057:pp8", "057:dd6"],
+  "covers": ["057:pf6", "057:pp4", "057:pp7"],
+  "spec": {
+    "story": "A culture of dividing cells, none of them in step, is given X-rays. Each dot below is one cell in a sample of the culture.",
+    "illustrative": true,
+    "note": "The lecture says p21 blocks Cdk2 and so entry into S, and that p53 also blocks Cdk1 through other proteins, but not how long each stage lasts, so the durations are illustrative. The slide also says arrest can happen in S or M. That is not modelled: cells already in S carry on.",
+    "unit": "h",
+    "step": 0.25,
+    "individual": "cell",
+    "individuals": "cells",
+    "loop": 2,
+    "measure": {
+      "name": "relative DNA content",
+      "unit": "",
+      "min": 0.5,
+      "max": 2.6,
+      "bins": 14,
+      "cv": 0.06
+    },
+    "stages": [
+      {"id": "g1", "label": "G1", "duration": 11, "value": 1, "note": "Before DNA replication: relative DNA content 1."},
+      {"id": "s", "label": "S", "duration": 8, "value": [1, 2], "note": "Replication: DNA content rises from 1 to 2."},
+      {"id": "g2", "label": "G2", "duration": 4.5, "value": 2, "note": "Replication finished: twice the G1 DNA content."},
+      {"id": "m", "label": "M", "duration": 0.5, "value": 2, "note": "Mitosis, then the cell divides."}
+    ],
+    "transitions": [
+      {"id": "into-s", "from": "g1", "label": "entry to S"},
+      {"id": "s-out", "from": "s"},
+      {"id": "into-m", "from": "g2", "label": "entry to M"},
+      {"id": "div", "from": "m", "label": "division"}
+    ],
+    "treatments": [
+      {
+        "id": "p53",
+        "label": "Give X-rays to normal cells",
+        "because": "X-rays activate ATM, then Chk2 and p53. p53 switches on p21, which blocks Cdk2 so cells do not enter S, and it also blocks Cdk1 so cells do not enter M.",
+        "effects": [
+          {"kind": "block", "transition": "into-s"},
+          {"kind": "block", "transition": "into-m"}
+        ],
+        "times": [5, 7, 10]
+      },
+      {
+        "id": "nop53",
+        "label": "Give X-rays to cells with the p53 gene deleted",
+        "because": "p53 does nothing itself except switch on genes such as p21. Without it neither brake comes on, so the cells carry on cycling.",
+        "control": true,
+        "effects": [],
+        "times": [12, 24]
+      },
+      {
+        "id": "nop21",
+        "label": "Give X-rays to cells with the p21 gene deleted",
+        "because": "Without p21 nothing blocks Cdk2, so cells enter S, but p53 still blocks Cdk1 through other proteins, so they stop before M.",
+        "effects": [
+          {"kind": "block", "transition": "into-m"}
+        ],
+        "times": [12, 16, 20]
+      }
+    ]
+  }
+}

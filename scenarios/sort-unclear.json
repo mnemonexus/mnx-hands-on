@@ -1,0 +1,312 @@
+{
+  "title": "Sort: marking a statement unclear retires it, and the round carries on with another",
+  "surface": "standalone",
+  "settings": {
+    "level": "0"
+  },
+  "drive": [
+    {
+      "click": "[data-activity=ho-sort-033-cytochrome-p450-laccase]"
+    },
+    {
+      "waitFor": "[data-action=unclear]"
+    },
+    {
+      "click": "[data-action=unclear]"
+    },
+    {
+      "waitForText": "[data-role=reason]",
+      "text": "retired"
+    },
+    {
+      "waitFor": "[data-role=card]"
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-action=bin-0]"
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-action=bin-0]"
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "expect": "complete"
+    }
+  ],
+  "expectResult": {
+    "completed": true,
+    "practice": {
+      "version": 1,
+      "activityId": "ho-sort-033-cytochrome-p450-laccase",
+      "valid": true
+    }
+  }
+}

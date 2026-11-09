@@ -1,0 +1,119 @@
+{
+  "story": "A breeding colony of insects with all stages mixed.",
+  "illustrative": true,
+  "note": "The durations and the number of eggs are illustrative, chosen for the picture and not measured on a real species.",
+  "unit": "days",
+  "step": 1,
+  "individual": "insect",
+  "individuals": "insects",
+  "loop": 3,
+  "measure": {
+    "name": "body length",
+    "unit": "mm",
+    "min": 0,
+    "max": 20,
+    "bins": 10,
+    "cv": 0.05
+  },
+  "stages": [
+    {
+      "id": "egg",
+      "label": "Egg",
+      "duration": 3,
+      "value": 1
+    },
+    {
+      "id": "larva",
+      "label": "Larva",
+      "duration": 10,
+      "value": [
+        2,
+        14
+      ]
+    },
+    {
+      "id": "pupa",
+      "label": "Pupa",
+      "duration": 5,
+      "value": 10
+    },
+    {
+      "id": "adult",
+      "label": "Adult",
+      "duration": 4,
+      "value": 16
+    }
+  ],
+  "transitions": [
+    {
+      "id": "hatch",
+      "from": "egg",
+      "label": "hatching"
+    },
+    {
+      "id": "pupate",
+      "from": "larva",
+      "label": "pupation"
+    },
+    {
+      "id": "emerge",
+      "from": "pupa",
+      "label": "emerging"
+    },
+    {
+      "id": "lay",
+      "from": "adult",
+      "label": "egg laying"
+    }
+  ],
+  "treatments": [
+    {
+      "id": "cold",
+      "label": "Hold the colony in the cold",
+      "because": "Cold doubles the time a larva needs to grow, so larvae take longer to leave their stage.",
+      "effects": [
+        {
+          "kind": "slow",
+          "stage": "larva",
+          "factor": 2
+        }
+      ],
+      "times": [
+        8,
+        12,
+        20
+      ]
+    },
+    {
+      "id": "spray",
+      "label": "Spray a poison that acts on larvae",
+      "because": "Larvae are removed at a steady rate, so few reach the pupal stage.",
+      "effects": [
+        {
+          "kind": "kill",
+          "stage": "larva",
+          "rate": 0.3
+        }
+      ],
+      "times": [
+        30,
+        40
+      ]
+    },
+    {
+      "id": "wasp",
+      "label": "Add a wasp that stops pupation",
+      "because": "Larvae cannot pass into the pupal stage, so they wait at the end of the larval stage.",
+      "effects": [
+        {
+          "kind": "block",
+          "transition": "pupate"
+        }
+      ],
+      "times": [
+        15,
+        20
+      ]
+    }
+  ]
+}

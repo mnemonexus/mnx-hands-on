@@ -1,0 +1,106 @@
+{
+  "title": "The number: a missing unit is asked for, then a typed answer with its unit is checked",
+  "surface": "standalone",
+  "settings": {
+    "level": "2"
+  },
+  "drive": [
+    {
+      "click": "[data-activity=ho-dial-first-order-decay]"
+    },
+    {
+      "waitFor": "[data-role=answer]"
+    },
+    {
+      "fill": "[data-role=answer]",
+      "text": "5"
+    },
+    {
+      "click": "[data-action=check]"
+    },
+    {
+      "waitForText": "[data-role=problem]",
+      "text": "unit"
+    },
+    {
+      "fill": "[data-role=answer]",
+      "text": "5 M"
+    },
+    {
+      "click": "[data-action=check]"
+    },
+    {
+      "waitForText": "[data-role=problem]",
+      "text": "measures something else"
+    },
+    {
+      "fill": "[data-role=answer]",
+      "text": "5 s"
+    },
+    {
+      "waitForText": "[data-role=preview]",
+      "text": "Read as"
+    },
+    {
+      "click": "[data-action=check]"
+    },
+    {
+      "waitFor": "[data-phase=play]"
+    },
+    {
+      "waitFor": "[data-action=reset]"
+    },
+    {
+      "click": "[data-action=reset]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-role=answer]"
+    },
+    {
+      "fill": "[data-role=answer]",
+      "text": "0.05 min"
+    },
+    {
+      "press": "Enter",
+      "on": "[data-role=answer]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-role=answer]"
+    },
+    {
+      "fill": "[data-role=answer]",
+      "text": "1 x 10^1 s"
+    },
+    {
+      "click": "[data-action=check]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "expect": "complete"
+    }
+  ],
+  "expectResult": {
+    "completed": true,
+    "practice": {
+      "activityId": "ho-dial-first-order-decay",
+      "valid": true
+    }
+  }
+}

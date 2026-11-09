@@ -1,0 +1,79 @@
+{
+  "title": "What each is for: each given condition is answered, and the grid fills in, in each of three rounds",
+  "surface": "standalone",
+  "settings": {
+    "level": "0"
+  },
+  "drive": [
+    {
+      "click": "[data-activity=ho-controls-mir-214-atf4]"
+    },
+    {
+      "waitFor": "[data-role=conditions]"
+    },
+    {
+      "click": "[data-purpose='0:0']"
+    },
+    {
+      "click": "[data-purpose='1:0']"
+    },
+    {
+      "click": "[data-action=run]"
+    },
+    {
+      "waitFor": "[data-role=after]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-role=conditions]"
+    },
+    {
+      "click": "[data-purpose='0:0']"
+    },
+    {
+      "click": "[data-purpose='1:0']"
+    },
+    {
+      "click": "[data-action=run]"
+    },
+    {
+      "waitFor": "[data-role=after]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-role=conditions]"
+    },
+    {
+      "click": "[data-purpose='0:0']"
+    },
+    {
+      "click": "[data-purpose='1:0']"
+    },
+    {
+      "click": "[data-action=run]"
+    },
+    {
+      "waitFor": "[data-role=after]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "expect": "complete"
+    }
+  ],
+  "expectResult": {
+    "completed": true,
+    "practice": {
+      "version": 1,
+      "activityId": "ho-controls-mir-214-atf4",
+      "valid": true,
+      "hintsUsed": 0,
+      "attempts": 3
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "id": "ho-predict-sec-two-detectors",
+  "title": "A size exclusion run read at two wavelengths",
+  "summary": "A protein-DNA complex with a fluorescent DNA label runs through a size exclusion column. Draw the trace each detector will record, then see the real one. Each later round changes one thing.",
+  "level": 3,
+  "minutes": 6,
+  "terms": ["size exclusion chromatography", "SEC", "elution profile", "elution volume", "protein-DNA complex", "6-FAM", "absorbance at 280 nm", "SDS-PAGE"],
+  "skills": ["predict-the-result"],
+  "family": "sec-traces",
+  "cite": ["081:p67", "081:p68", "081:p69", "081:p70", "081:p71", "081:p72", "081:p73"],
+  "spec": {
+    "skin": "trace",
+    "technique": "size exclusion run",
+    "intro": "A protein is bound to DNA that carries a 6-FAM label, and the complex runs through a size exclusion column. The DNA is in slight excess, so no protein is left free. One detector reads only protein, by tryptophan fluorescence. One reads the 6-FAM label at 495 nm. The sample holds some free labelled DNA.",
+    "lesson": "Size exclusion separates by size, so the big complex comes off first. The protein detector sees only the complex; the label detector sees the complex and, later, the free DNA, which has the label but no protein.",
+    "axis": { "name": "size", "unit": "", "min": 1, "max": 100, "scale": "log", "bigger": "first", "run": { "name": "elution volume", "unit": "mL", "min": 9, "max": 21 } },
+    "species": {
+      "C": { "name": "protein-DNA complex", "short": "complex", "at": 14, "carries": ["Trp", "6-FAM"] },
+      "F": { "name": "free labelled DNA", "short": "free DNA", "at": 17, "width": 0.7, "carries": ["6-FAM"] }
+    },
+    "lanes": [
+      { "id": "p", "name": "Protein detector", "detail": "Excites at 280 nm and reads tryptophan emission, so it reads protein only.", "mix": { "C": 1, "F": 0.5 }, "detect": { "rule": "label", "name": "Trp" } },
+      { "id": "l", "name": "Label detector (495 nm)", "detail": "Reads the 6-FAM label on the DNA.", "mix": { "C": 1, "F": 0.5 }, "detect": { "rule": "label", "name": "6-FAM" } }
+    ],
+    "detect": { "rule": "all" },
+    "changes": [
+      { "id": "dna-alone", "say": "Only the labelled DNA is applied, with no protein.", "lesson": "With no protein there is no complex, so the protein detector stays flat and the label detector sees one peak, where free DNA comes off.", "set": { "*": { "C": 0, "F": 1 } } },
+      { "id": "excess-protein", "say": "More protein is added so that all the DNA is bound, and the complex is purified from the leftover protein before the run.", "lesson": "All the DNA is in the complex and no protein is free, so both detectors see the same single peak.", "set": { "*": { "F": 0 } } }
+    ],
+    "why": [
+      { "kind": "absent", "species": "F", "lane": "p", "in": ["base"], "say": "The free DNA has no protein in it, so the protein detector does not see it." },
+      { "kind": "present", "species": "F", "lane": "l", "in": ["base"], "say": "The free DNA still carries 6-FAM, so the 495 nm detector sees it, later than the bigger complex." },
+      { "kind": "blank", "lane": "p", "in": ["dna-alone"], "say": "Nothing in this sample is protein, so the protein detector stays flat." },
+      { "kind": "darker", "lane": "l", "species": "C", "than": { "species": "F" }, "in": ["base"], "say": "There is twice as much complex as free DNA in the sample." }
+    ],
+    "note": "The workshop draws its 280 nm trace from protein only. DNA also absorbs at 280 nm, so here the protein detector reads tryptophan fluorescence, which only protein gives. Heights are idealised."
+  }
+}

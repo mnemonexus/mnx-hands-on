@@ -1,0 +1,73 @@
+{
+  "title": "How far: lock in the ghost point where it starts, in each round",
+  "surface": "standalone",
+  "settings": {
+    "level": "1"
+  },
+  "drive": [
+    {
+      "click": "[data-activity=ho-dial-beer-lambert]"
+    },
+    {
+      "waitFor": "[data-action=lock]"
+    },
+    {
+      "waitFor": "[data-rung=\"1\"]"
+    },
+    {
+      "click": "[data-action=lock]"
+    },
+    {
+      "waitFor": "[data-phase=play]"
+    },
+    {
+      "waitFor": "[data-role=sliders]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-action=lock]"
+    },
+    {
+      "press": "ArrowUp",
+      "on": ".ho-m--ring"
+    },
+    {
+      "press": "Enter",
+      "on": ".ho-m--ring"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-action=lock]"
+    },
+    {
+      "click": "[data-action=lock]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "expect": "complete"
+    }
+  ],
+  "expectResult": {
+    "completed": true,
+    "practice": {
+      "activityId": "ho-dial-beer-lambert",
+      "valid": true,
+      "attempts": 3
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "title": "With the level left to follow the learner, a run completes, saves its rung, and the list opens again",
+  "surface": "standalone",
+  "drive": [
+    {
+      "click": "[data-activity=ho-dial-langmuir-binding]"
+    },
+    {
+      "waitFor": "[data-choice=up]"
+    },
+    {
+      "click": "[data-choice=up]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-choice=up]"
+    },
+    {
+      "click": "[data-choice=up]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-choice=up]"
+    },
+    {
+      "click": "[data-choice=up]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "expect": "complete"
+    },
+    {
+      "relaunch": true
+    },
+    {
+      "waitFor": "[data-activity=ho-dial-langmuir-binding]"
+    },
+    {
+      "waitForText": "[data-activity=ho-dial-langmuir-binding]",
+      "text": "Done:"
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "id": "ho-controls-mir-214-atf4",
+  "title": "Does miR-214 lower Atf4 directly? Choose the controls",
+  "summary": "Adding an agomir lowers Atf4 protein, and three explanations could account for it. Choose which extra experiments to run, within your slots, so that the explanations can be told apart.",
+  "level": 3,
+  "minutes": 6,
+  "terms": [
+    "microRNA",
+    "agomir",
+    "miR-214",
+    "3' UTR",
+    "luciferase reporter",
+    "negative control RNA",
+    "translational block",
+    "direct target"
+  ],
+  "skills": [
+    "choose-controls"
+  ],
+  "family": "mirna-target-controls",
+  "cite": [
+    "026:p101",
+    "026:p102",
+    "026:p103",
+    "026:p104",
+    "026:p105",
+    "026:p108",
+    "026:p109",
+    "026:p110",
+    "026:p112",
+    "026:p113",
+    "026:p114"
+  ],
+  "spec": {
+    "result": {
+      "title": "After wild-type agomir-214 is added to cells, Atf4 protein falls but Atf4 RNA does not.",
+      "detail": "miR-214 is the suspected cause. Three explanations could account for the fall in protein."
+    },
+    "hypotheses": [
+      {
+        "id": "direct",
+        "name": "miR-214 pairs with the Atf4 3' UTR and blocks its translation"
+      },
+      {
+        "id": "load",
+        "name": "Putting a large amount of any RNA into the cells lowers protein levels"
+      },
+      {
+        "id": "indirect",
+        "name": "miR-214 acts on something else, which then lowers Atf4"
+      }
+    ],
+    "conditions": [
+      {
+        "id": "neg-rna",
+        "name": "Add an unrelated negative-control RNA at the same dose",
+        "reads": "Atf4 protein"
+      },
+      {
+        "id": "mutant",
+        "name": "Add an agomir-214 with a few base changes",
+        "reads": "Atf4 protein"
+      },
+      {
+        "id": "luc-wt",
+        "name": "Luciferase reporter with the wild-type Atf4 3' UTR, plus agomir-214",
+        "reads": "luciferase light"
+      },
+      {
+        "id": "luc-mut",
+        "name": "Luciferase reporter with a mutated Atf4 3' UTR, plus agomir-214",
+        "reads": "luciferase light"
+      },
+      {
+        "id": "luc-other",
+        "name": "Luciferase reporter with an unrelated 3' UTR, plus agomir-214",
+        "reads": "luciferase light"
+      },
+      {
+        "id": "repeat",
+        "name": "Repeat the first experiment with wild-type agomir-214",
+        "reads": "Atf4 protein"
+      }
+    ],
+    "outcomes": {
+      "neg-rna": {
+        "direct": "none",
+        "load": "reduced",
+        "indirect": "none"
+      },
+      "mutant": {
+        "direct": "none",
+        "load": "reduced",
+        "indirect": "none"
+      },
+      "luc-wt": {
+        "direct": "reduced",
+        "load": "reduced",
+        "indirect": "none"
+      },
+      "luc-mut": {
+        "direct": "none",
+        "load": "reduced",
+        "indirect": "none"
+      },
+      "luc-other": {
+        "direct": "none",
+        "load": "reduced",
+        "indirect": "none"
+      },
+      "repeat": {
+        "direct": "reduced",
+        "load": "reduced",
+        "indirect": "reduced"
+      }
+    },
+    "lesson": "An unrelated RNA shows whether any RNA would do it, and the reporter with the Atf4 3' UTR shows whether miR-214 acts through that site, which separates a direct effect from an indirect one. Repeating the experiment gives the same result whatever is true.",
+    "note": "The reporter sits under an unrelated promoter, so an indirect effect on Atf4 itself would not change it."
+  },
+  "covers": [
+    "026:p113"
+  ]
+}

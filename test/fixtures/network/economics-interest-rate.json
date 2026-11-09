@@ -1,0 +1,23 @@
+{
+  "story": "An economy with cheap borrowing.",
+  "nodes": [
+    { "id": "rate", "label": "Interest rate", "x": 12, "y": 50, "level": "low" },
+    { "id": "borrow", "label": "Cost of borrowing", "x": 37, "y": 50 },
+    { "id": "invest", "label": "Business investment", "x": 62, "y": 16, "level": "high" },
+    { "id": "jobs", "label": "Employment", "x": 87, "y": 50 },
+    { "id": "price", "label": "Price level", "x": 62, "y": 84 }
+  ],
+  "edges": [
+    { "from": "rate", "to": "borrow", "sign": "+", "reason": "Lenders pass the central rate on to borrowers." },
+    { "from": "borrow", "to": "invest", "sign": "-", "reason": "Dearer loans make fewer projects worth starting." },
+    { "from": "invest", "to": "jobs", "sign": "+", "reason": "Firms that invest take on workers." },
+    { "from": "jobs", "to": "price", "sign": "+", "reason": "More people in work spend more, which pulls prices up." },
+    { "from": "price", "to": "rate", "notModelled": "A central bank raises the rate when prices climb. That loop is left out." }
+  ],
+  "outputs": ["invest", "jobs", "price"],
+  "perturbations": [
+    { "id": "hike", "node": "rate", "kind": "more", "label": "Raise the interest rate" },
+    { "id": "cut", "node": "rate", "kind": "remove", "label": "Cut the interest rate to nothing" },
+    { "id": "ban", "node": "invest", "kind": "block", "label": "Ban new projects", "outputs": ["jobs", "price"] }
+  ]
+}

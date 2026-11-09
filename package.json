@@ -1,0 +1,15 @@
+{
+  "name": "hands-on-addon",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Hands On: a MnemoNexus practice add-on engine. Bring your own content.",
+  "scripts": {
+    "content": "bun dev/build-content.mjs",
+    "typecheck": "node ../mnx-addon-kit-release/node_modules/typescript/bin/tsc -p tsconfig.json",
+    "test": "bun test test",
+    "check": "bun run content && bun run typecheck && bun run test && cd ../mnx-addon-kit-release && bun run check \"../Hands On\"",
+    "pack": "bun run content && cd ../mnx-addon-kit-release && bun run pack \"../Hands On\""
+  },
+  "license": "MIT"
+}

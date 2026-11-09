@@ -1,0 +1,32 @@
+{
+  "title": "The list, opened from the Experiences page",
+  "surface": "standalone",
+  "drive": [
+    {
+      "waitFor": "[data-view=home]"
+    },
+    {
+      "click": "[data-filter=\"engine:dial\"]"
+    },
+    {
+      "click": "[data-filter=undone]"
+    },
+    {
+      "waitFor": "[data-activity=ho-dial-langmuir-binding]"
+    },
+    {
+      "fill": "[data-role=search]",
+      "text": "half-life"
+    },
+    {
+      "waitFor": "[data-activity=ho-dial-first-order-decay]"
+    },
+    {
+      "fill": "[data-role=search]",
+      "text": "zzzz"
+    },
+    {
+      "waitFor": ".mnx-empty"
+    }
+  ]
+}

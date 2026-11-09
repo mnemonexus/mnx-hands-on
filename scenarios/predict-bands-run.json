@@ -1,0 +1,88 @@
+{
+  "title": "Place a band: a band is picked up, put in a lane and the result is run, in each of three rounds",
+  "surface": "standalone",
+  "settings": {
+    "level": "1"
+  },
+  "drive": [
+    {
+      "click": "[data-activity=ho-predict-emsa-competitor-supershift]"
+    },
+    {
+      "waitFor": "[data-role=palette]"
+    },
+    {
+      "click": ".ho-chipband"
+    },
+    {
+      "click": "[data-lane-body='0']"
+    },
+    {
+      "waitFor": ".ho-band--guess"
+    },
+    {
+      "click": "[data-action=run]"
+    },
+    {
+      "waitFor": "[data-role=after]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-role=palette]"
+    },
+    {
+      "click": ".ho-chipband"
+    },
+    {
+      "click": "[data-lane-body='0']"
+    },
+    {
+      "waitFor": ".ho-band--guess"
+    },
+    {
+      "click": "[data-action=run]"
+    },
+    {
+      "waitFor": "[data-role=after]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-role=palette]"
+    },
+    {
+      "click": ".ho-chipband"
+    },
+    {
+      "click": "[data-lane-body='0']"
+    },
+    {
+      "waitFor": ".ho-band--guess"
+    },
+    {
+      "click": "[data-action=run]"
+    },
+    {
+      "waitFor": "[data-role=after]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "expect": "complete"
+    }
+  ],
+  "expectResult": {
+    "completed": true,
+    "practice": {
+      "version": 1,
+      "activityId": "ho-predict-emsa-competitor-supershift",
+      "valid": true,
+      "hintsUsed": 0,
+      "attempts": 3
+    }
+  }
+}

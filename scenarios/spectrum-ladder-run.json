@@ -1,0 +1,124 @@
+{
+  "title": "Read the Spectrum: read a ladder one residue at a time, a residue for each gap, in three rounds",
+  "surface": "standalone",
+  "settings": {
+    "level": "2"
+  },
+  "drive": [
+    {
+      "click": "[data-activity=ho-spectrum-059-ladder-of-the-lecture-peptides]"
+    },
+    {
+      "waitFor": "[data-engine=spectrum]"
+    },
+    {
+      "waitFor": "[data-row=\"0\"][data-state=open]"
+    },
+    {
+      "click": "[data-row=\"0\"] [data-res=G]"
+    },
+    {
+      "waitFor": "[data-row=\"1\"][data-state=open]"
+    },
+    {
+      "click": "[data-row=\"1\"] [data-res=G]"
+    },
+    {
+      "waitFor": "[data-row=\"2\"][data-state=open]"
+    },
+    {
+      "click": "[data-row=\"2\"] [data-res=G]"
+    },
+    {
+      "waitFor": "[data-row=\"3\"][data-state=open]"
+    },
+    {
+      "click": "[data-row=\"3\"] [data-res=G]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-engine=spectrum]"
+    },
+    {
+      "waitFor": "[data-row=\"0\"][data-state=open]"
+    },
+    {
+      "click": "[data-row=\"0\"] [data-res=G]"
+    },
+    {
+      "waitFor": "[data-row=\"1\"][data-state=open]"
+    },
+    {
+      "click": "[data-row=\"1\"] [data-res=G]"
+    },
+    {
+      "waitFor": "[data-row=\"2\"][data-state=open]"
+    },
+    {
+      "click": "[data-row=\"2\"] [data-res=G]"
+    },
+    {
+      "waitFor": "[data-row=\"3\"][data-state=open]"
+    },
+    {
+      "click": "[data-row=\"3\"] [data-res=G]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-engine=spectrum]"
+    },
+    {
+      "waitFor": "[data-row=\"0\"][data-state=open]"
+    },
+    {
+      "click": "[data-row=\"0\"] [data-res=G]"
+    },
+    {
+      "waitFor": "[data-row=\"1\"][data-state=open]"
+    },
+    {
+      "click": "[data-row=\"1\"] [data-res=G]"
+    },
+    {
+      "waitFor": "[data-row=\"2\"][data-state=open]"
+    },
+    {
+      "click": "[data-row=\"2\"] [data-res=G]"
+    },
+    {
+      "waitFor": "[data-row=\"3\"][data-state=open]"
+    },
+    {
+      "click": "[data-row=\"3\"] [data-res=G]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "expect": "complete"
+    }
+  ],
+  "expectResult": {
+    "completed": true,
+    "practice": {
+      "version": 1,
+      "activityId": "ho-spectrum-059-ladder-of-the-lecture-peptides",
+      "valid": true,
+      "hintsUsed": 0,
+      "attempts": 3
+    }
+  }
+}

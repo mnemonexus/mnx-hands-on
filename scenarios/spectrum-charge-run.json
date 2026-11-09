@@ -1,0 +1,70 @@
+{
+  "title": "Read the Spectrum: read a charge from isotope spacing in three rounds",
+  "surface": "standalone",
+  "settings": {
+    "level": "0"
+  },
+  "drive": [
+    {
+      "click": "[data-activity=ho-spectrum-charge-series]"
+    },
+    {
+      "waitFor": "[data-engine=spectrum]"
+    },
+    {
+      "click": "[data-z=\"7\"]"
+    },
+    {
+      "click": "[data-action=check]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-engine=spectrum]"
+    },
+    {
+      "click": "[data-z=\"8\"]"
+    },
+    {
+      "click": "[data-action=check]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-engine=spectrum]"
+    },
+    {
+      "click": "[data-z=\"9\"]"
+    },
+    {
+      "click": "[data-action=check]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "expect": "complete"
+    }
+  ],
+  "expectResult": {
+    "completed": true,
+    "practice": {
+      "version": 1,
+      "activityId": "ho-spectrum-charge-series",
+      "valid": true,
+      "hintsUsed": 0,
+      "attempts": 3
+    }
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "id": "ho-spectrum-060-which-modification",
+  "title": "Which modification, and how many, from a mass shift",
+  "summary": "A peptide appears at a second, higher m/z. Allow for its charge, find the mass gained and name the modification and how many: phosphate, oxidation, methyl or acetyl. A fresh peptide every time.",
+  "level": 3,
+  "minutes": 5,
+  "terms": [
+    "mass shift",
+    "+79.97 Da",
+    "+42.01 Da",
+    "+14.02 Da",
+    "+15.99 Da",
+    "acetylation of lysine",
+    "methylation of lysine",
+    "oxidation of methionine",
+    "phosphorylation adds"
+  ],
+  "skills": [
+    "ms-mass-shifts"
+  ],
+  "family": "spectrum-060-which-modification",
+  "cite": [
+    "060:p113",
+    "060:p119",
+    "060:p122",
+    "060:p123",
+    "060:p124",
+    "060:p126"
+  ],
+  "spec": {
+    "mode": "positive",
+    "massType": "monoisotopic",
+    "peptides": [
+      {
+        "sequence": "GDVSAELTR"
+      },
+      {
+        "sequence": "HEYPSNVAK"
+      },
+      {
+        "sequence": "TFSDVMYGR"
+      },
+      {
+        "sequence": "AESPTNLVK"
+      },
+      {
+        "sequence": "MSTYKEAR"
+      },
+      {
+        "sequence": "TSMGLRWK"
+      }
+    ],
+    "modifications": [
+      {
+        "id": "phospho",
+        "name": "phosphorylation",
+        "delta": 79.97,
+        "residues": [
+          "S",
+          "T",
+          "Y"
+        ]
+      },
+      {
+        "id": "oxid",
+        "name": "oxidation",
+        "delta": 15.99,
+        "residues": [
+          "M",
+          "W"
+        ]
+      },
+      {
+        "id": "methyl",
+        "name": "methylation",
+        "delta": 14.02,
+        "residues": [
+          "K",
+          "R",
+          "N-term"
+        ]
+      },
+      {
+        "id": "acetyl",
+        "name": "acetylation",
+        "delta": 42.01,
+        "residues": [
+          "K",
+          "N-term"
+        ]
+      }
+    ],
+    "charges": [
+      2,
+      4
+    ],
+    "tasks": [
+      "shift"
+    ],
+    "note": "Shifts as the lecture gives them: phosphate 79.97, oxidation 15.99, methyl 14.02, acetyl 42.01 Da."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "result": {
+    "title": "An English village was abandoned in the 1400s.",
+    "detail": "By 1500 the lists show nobody living there. Three explanations are offered. This one is illustrative, not a finding."
+  },
+  "hypotheses": [
+    { "id": "plague", "name": "Plague killed or drove out the villagers" },
+    { "id": "sheep", "name": "The lord turned the land over to sheep and sent the tenants away" },
+    { "id": "weather", "name": "A run of failed harvests made farming there hopeless" }
+  ],
+  "conditions": [
+    { "id": "burials", "name": "The parish burial register for the years before", "reads": "burials per year" },
+    { "id": "wool", "name": "The lord's wool-sale accounts", "reads": "wool sold" },
+    { "id": "rings", "name": "Tree-ring widths from timber of the period", "reads": "tree-ring growth" },
+    { "id": "tax", "name": "The tax return listing households", "reads": "households" },
+    { "id": "church", "name": "The date the church was built", "reads": "date" }
+  ],
+  "outcomes": {
+    "burials": { "plague": "increased", "sheep": "none", "weather": "increased" },
+    "wool": { "plague": "none", "sheep": "increased", "weather": "none" },
+    "rings": { "plague": "none", "sheep": "none", "weather": "reduced" },
+    "tax": { "plague": "reduced", "sheep": "reduced", "weather": "reduced" },
+    "church": { "plague": "none", "sheep": "none", "weather": "none" }
+  },
+  "lesson": "Wool sales point to sheep and tree rings to weather, so with those two in hand every pair of explanations differs. The tax return fits all three, and the date of the church fits none of them in particular."
+}

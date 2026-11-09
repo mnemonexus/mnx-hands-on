@@ -1,0 +1,94 @@
+/*
+ * Grow, Arrest, Count. Colour means something: each stage has its own data colour (told apart by label as well, so a
+ * single-accent theme still reads), the quiet text colour is the guess and how it was before, success and danger mark right
+ * and wrong. Everything sits on a filled surface, and a border alone does not count.
+ */
+
+.ho-gac { display: flex; flex-direction: column; gap: 0.75rem; min-width: 0; }
+.ho-gac__head { display: flex; flex-direction: column; gap: 0.25rem; }
+
+/* ── The chart ─────────────────────────────────────────────────────────────── */
+
+.ho-gac__card { padding: 0.5rem 0.5rem 0.25rem; }
+.ho-gac__plot { width: 100%; min-width: 0; }
+.ho-gac__bar { opacity: 0.94; shape-rendering: crispEdges; }
+.ho-gac__gbar { fill: var(--mnx-text-muted); fill-opacity: 0.3; stroke: var(--mnx-text); stroke-width: 1.5; stroke-dasharray: 4 3; }
+.ho-gac[data-phase="ask"] .ho-gac__gbar { fill-opacity: 0.55; stroke-dasharray: none; stroke-opacity: 0.7; }
+.ho-gac__before { stroke: var(--mnx-text); stroke-width: 2; stroke-dasharray: 2 5; stroke-linecap: round; stroke-linejoin: round; opacity: 0.85; pointer-events: none; }
+.ho-gac__band { opacity: 0.95; }
+.ho-gac__drawhint { fill: var(--mnx-text-muted); font-size: 14px; pointer-events: none; }
+.ho-gac__hit { pointer-events: none; }
+.ho-gac__hit--draw { pointer-events: all; cursor: crosshair; touch-action: none; }
+.ho-gac[data-phase="run"] .ho-gac__hit--draw, .ho-gac[data-phase="done"] .ho-gac__hit--draw { pointer-events: none; cursor: default; }
+.ho-gac__bin { pointer-events: none; fill: transparent; outline: none; }
+.ho-gac__bin:focus-visible { stroke: var(--mnx-focus); stroke-width: 2.5; fill: var(--mnx-accent-soft); fill-opacity: 0.5; }
+.ho-gac__trace { stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+.ho-gac__guessline { stroke: var(--mnx-text-muted); stroke-width: 2; stroke-dasharray: 5 4; }
+.ho-gac__guessdot { fill: var(--mnx-surface); stroke: var(--mnx-text); stroke-width: 3; stroke-dasharray: 3 3; }
+.ho-gac__truedot { stroke: var(--mnx-surface-2); stroke-width: 2; fill: var(--mnx-accent); }
+.ho-gac__truedot--met { fill: var(--mnx-success); }
+.ho-gac__truedot--miss { fill: var(--mnx-danger); }
+.ho-gac__marktext { fill: var(--mnx-text); font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; paint-order: stroke; stroke: var(--mnx-surface); stroke-width: 4px; stroke-linejoin: round; }
+.ho-gac__marktext--guess { fill: var(--mnx-text-muted); }
+
+.ho-gac__legend { list-style: none; margin: 0; padding: 0 0.25rem; display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; font-size: 0.8125rem; color: var(--mnx-text-muted); }
+.ho-gac__legend li { display: inline-flex; align-items: center; gap: 0.4rem; }
+.ho-gac__key { display: inline-block; width: 1.25rem; height: 0.75rem; border-radius: 2px; flex: none; }
+.ho-gac__key--before { background: none; border-top: 2px dotted var(--mnx-text); height: 0; margin-top: 0.1rem; }
+.ho-gac__key--ghost { background: color-mix(in srgb, var(--mnx-text-muted) 45%, var(--mnx-surface)); }
+.ho-gac__key--now { background: linear-gradient(to right, var(--mnx-data-1) 0 33%, var(--mnx-data-2) 33% 66%, var(--mnx-data-3) 66% 100%); }
+
+/* ── The sample of the population ──────────────────────────────────────────── */
+
+.ho-gac__field { padding: 0.75rem; display: flex; flex-direction: column; gap: 0.625rem; }
+.ho-gac__clock { font-size: 0.875rem; color: var(--mnx-text-muted); font-variant-numeric: tabular-nums; min-height: 1.3em; }
+.ho-gac__zones { display: grid; grid-template-columns: repeat(auto-fit, minmax(7.25rem, 1fr)); gap: 0.5rem; }
+.ho-gac__zone {
+  display: flex; flex-direction: column; gap: 0.25rem; padding: 0.5rem 0.5rem 0.625rem; min-width: 0; cursor: pointer;
+  background: var(--mnx-surface-2); border-radius: var(--mnx-radius-surface); transition: box-shadow var(--mnx-duration);
+}
+.ho-gac__zone:focus-visible { outline: 2px solid var(--mnx-focus); outline-offset: 2px; }
+.ho-gac__zone[data-top="true"] { box-shadow: inset 0 0 0 2px var(--mnx-accent); }
+.ho-gac__zonehead { display: flex; align-items: flex-start; gap: 0.375rem; font-size: 0.875rem; min-width: 0; }
+.ho-gac__zonehead strong { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; line-height: 1.25; }
+.ho-gac__zonehead .ho-gac__swatch { margin-top: 0.2rem; }
+.ho-gac__zonepct { margin-left: auto; font-variant-numeric: tabular-nums; font-weight: 600; flex: none; }
+.ho-gac__swatch { display: inline-block; width: 0.75rem; height: 0.75rem; border-radius: 50%; flex: none; }
+.ho-gac__zonesub { font-size: 0.75rem; color: var(--mnx-text); font-variant-numeric: tabular-nums; }
+.ho-gac__zonenote { display: none; font-size: 0.75rem; color: var(--mnx-text); line-height: 1.4; }
+.ho-gac__zone[data-open="true"] .ho-gac__zonenote { display: block; }
+.ho-gac__dots { display: block; width: 100%; max-width: 8.5rem; aspect-ratio: 1; margin: 0 auto; }
+.ho-gac__dot { opacity: 0; transform-box: fill-box; transform-origin: center; transform: scale(0.3); }
+.ho-gac__dot[data-on="1"] { opacity: 1; transform: none; }
+:root:not([data-mnx-motion="reduced"]) .ho-gac__dot { transition: opacity 140ms ease-out, transform 140ms ease-out; }
+
+/* ── What the student does ─────────────────────────────────────────────────── */
+
+.ho-gac__pick { display: flex; align-items: center; gap: 0.5rem; }
+.ho-gac__pick .mnx-choice__text { flex: 1 1 auto; min-width: 0; }
+.ho-gac__pick[data-reveal="right"] { background: color-mix(in srgb, var(--mnx-success) 20%, var(--mnx-surface)); }
+.ho-gac__pick[data-reveal="wrong"] { background: color-mix(in srgb, var(--mnx-danger) 16%, var(--mnx-surface)); }
+.ho-gac__sketchrow { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+.ho-gac__runrow { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.875rem; }
+.ho-gac__scrub { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0.875rem; background: var(--mnx-surface-2); border-radius: var(--mnx-radius-surface); }
+.ho-gac__scrub .ho-range { flex: 1 1 auto; min-width: 0; }
+.ho-gac__scrub label { flex: none; margin: 0; }
+.ho-gac__scrub .mnx-button { white-space: nowrap; flex: none; }
+
+.ho-gac__note { min-height: 0; font-size: 0.9375rem; color: var(--mnx-text); }
+.ho-gac__note:empty { display: none; }
+.ho-gac__note[data-kind="hint"]::before, .ho-gac__note[data-kind="wrong"]::before { content: ""; display: inline-block; width: 0.5rem; height: 0.5rem; margin-right: 0.5rem; border-radius: 50%; vertical-align: 0.05em; }
+.ho-gac__note[data-kind="hint"]::before { background: var(--mnx-success); }
+.ho-gac__note[data-kind="wrong"]::before { background: var(--mnx-danger); }
+
+.ho-gac__info { display: flex; flex-direction: column; gap: 0.375rem; align-items: flex-start; }
+.ho-gac__badge {
+  display: inline-block; padding: 0.125rem 0.5rem; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--mnx-text); background: var(--mnx-surface-2); border-radius: var(--mnx-radius-chip);
+}
+
+@container ho (max-width: 34rem) {
+  .ho-gac__sketchrow { flex-direction: column; align-items: flex-start; gap: 0.375rem; }
+  .ho-gac__zones { grid-template-columns: repeat(auto-fit, minmax(6.25rem, 1fr)); }
+  .ho-gac__scrub { flex-wrap: wrap; }
+}

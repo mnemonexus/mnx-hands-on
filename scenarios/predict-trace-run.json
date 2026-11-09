@@ -1,0 +1,73 @@
+{
+  "title": "Draw a trace: a ring is moved with the keyboard and the trace is run, in each of three rounds",
+  "surface": "standalone",
+  "settings": {
+    "level": "1"
+  },
+  "drive": [
+    {
+      "click": "[data-activity=ho-predict-sec-two-detectors]"
+    },
+    {
+      "waitFor": "[data-skin=trace]"
+    },
+    {
+      "press": "ArrowUp",
+      "on": ".ho-trace-card[data-editable='true'] .ho-m--ring"
+    },
+    {
+      "click": "[data-action=run]"
+    },
+    {
+      "waitFor": "[data-role=after]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-skin=trace]"
+    },
+    {
+      "press": "ArrowUp",
+      "on": ".ho-trace-card[data-editable='true'] .ho-m--ring"
+    },
+    {
+      "click": "[data-action=run]"
+    },
+    {
+      "waitFor": "[data-role=after]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-skin=trace]"
+    },
+    {
+      "press": "ArrowUp",
+      "on": ".ho-trace-card[data-editable='true'] .ho-m--ring"
+    },
+    {
+      "click": "[data-action=run]"
+    },
+    {
+      "waitFor": "[data-role=after]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "expect": "complete"
+    }
+  ],
+  "expectResult": {
+    "completed": true,
+    "practice": {
+      "version": 1,
+      "activityId": "ho-predict-sec-two-detectors",
+      "valid": true,
+      "hintsUsed": 0,
+      "attempts": 3
+    }
+  }
+}

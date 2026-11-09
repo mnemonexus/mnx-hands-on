@@ -1,0 +1,184 @@
+{
+  "id": "ho-network-tor-cap",
+  "title": "TOR, 4E-BP and cap-dependent translation",
+  "summary": "Treat a cell with a drug, cut its oxygen, or delete a protein, and say what happens to TOR, 4E-BP and cap-dependent translation. One message goes its own way, and the picture says what it cannot show.",
+  "level": 2,
+  "minutes": 5,
+  "terms": [
+    "TOR kinase",
+    "mTOR",
+    "4E-BP",
+    "rapamycin",
+    "cap-dependent translation",
+    "cap-binding complex",
+    "eIF4E",
+    "IRES",
+    "cap-independent translation"
+  ],
+  "skills": [
+    "translation-control"
+  ],
+  "family": "tor-network",
+  "cite": [
+    "031:p52",
+    "031:p57",
+    "031:p58",
+    "031:p59",
+    "031:p63",
+    "031:p65",
+    "031:p66",
+    "031:p67",
+    "031:p70",
+    "031:p71",
+    "031:p74",
+    "031:p76",
+    "031:p85",
+    "031:p87",
+    "031:p88"
+  ],
+  "covers": [
+    "031:p59",
+    "031:p67"
+  ],
+  "spec": {
+    "story": "A well-fed cell with its oxygen, translating most messages by their cap.",
+    "nodes": [
+      {
+        "id": "nutr",
+        "label": "Nutrients, growth factors",
+        "x": 12,
+        "y": 16
+      },
+      {
+        "id": "hyp",
+        "label": "Starvation or hypoxia",
+        "x": 12,
+        "y": 50,
+        "level": "off"
+      },
+      {
+        "id": "rapa",
+        "label": "Rapamycin",
+        "x": 12,
+        "y": 84,
+        "level": "off"
+      },
+      {
+        "id": "tor",
+        "label": "TOR kinase",
+        "x": 37,
+        "y": 50
+      },
+      {
+        "id": "bp",
+        "label": "Active 4E-BP",
+        "x": 62,
+        "y": 50,
+        "note": "Unphosphorylated 4E-BP, the form that binds eIF4E."
+      },
+      {
+        "id": "cbc",
+        "label": "Cap-binding complex",
+        "x": 87,
+        "y": 50
+      },
+      {
+        "id": "cap",
+        "label": "Cap-dependent translation",
+        "x": 87,
+        "y": 16
+      },
+      {
+        "id": "ires",
+        "label": "IRES-message translation",
+        "x": 62,
+        "y": 84,
+        "note": "Messages with an IRES do not need the cap-binding complex. This node stands for one of them, because one level cannot show a few messages rising as the total falls."
+      }
+    ],
+    "edges": [
+      {
+        "from": "nutr",
+        "to": "tor",
+        "sign": "+",
+        "reason": "TOR is activated by nutrients and by growth factors such as insulin.",
+        "claim": "p65"
+      },
+      {
+        "from": "hyp",
+        "to": "tor",
+        "sign": "-",
+        "reason": "Starvation and hypoxia inhibit TOR.",
+        "claim": "p66"
+      },
+      {
+        "from": "rapa",
+        "to": "tor",
+        "sign": "-",
+        "reason": "Rapamycin inhibits the TOR kinase.",
+        "claim": "p70"
+      },
+      {
+        "from": "tor",
+        "to": "bp",
+        "sign": "-",
+        "reason": "Active TOR phosphorylates 4E-BP, and phosphorylated 4E-BP cannot bind eIF4E.",
+        "claim": "p67"
+      },
+      {
+        "from": "bp",
+        "to": "cbc",
+        "sign": "-",
+        "reason": "Unphosphorylated 4E-BP binds eIF4E, so the cap-binding complex cannot assemble.",
+        "claim": "p59"
+      },
+      {
+        "from": "cbc",
+        "to": "cap",
+        "sign": "+",
+        "reason": "The cap-binding complex brings the preinitiation complex to the mRNA cap.",
+        "claim": "p52"
+      },
+      {
+        "from": "hyp",
+        "to": "ires",
+        "notModelled": "In hypoxia some IRES messages rise while translation as a whole falls (p87, p88). One level per node cannot show a rise inside a fall, so it is not asked."
+      }
+    ],
+    "outputs": [
+      "bp",
+      "cap",
+      "ires"
+    ],
+    "perturbations": [
+      {
+        "id": "rapamycin",
+        "node": "rapa",
+        "kind": "more",
+        "label": "Treat with rapamycin"
+      },
+      {
+        "id": "hypoxia",
+        "node": "hyp",
+        "kind": "more",
+        "label": "Cut the oxygen supply",
+        "outputs": [
+          "tor",
+          "bp",
+          "cap"
+        ]
+      },
+      {
+        "id": "starve",
+        "node": "nutr",
+        "kind": "remove",
+        "label": "Take away nutrients and growth factors",
+        "outputs": [
+          "bp",
+          "cbc",
+          "cap"
+        ]
+      }
+    ]
+  }
+}

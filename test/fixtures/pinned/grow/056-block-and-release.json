@@ -1,0 +1,75 @@
+{
+  "id": "ho-grow-056-block-and-release",
+  "title": "Blocking cells in early S, then washing the drug out",
+  "summary": "Aphidicolin holds cells at the start of S phase, and it can be washed out. Say where a culture gathers while it is held, and what the culture looks like some hours after the wash.",
+  "level": 2,
+  "minutes": 5,
+  "terms": ["aphidicolin", "reversible inhibitor", "DNA polymerase", "forced synchrony", "early S phase", "chemical inhibitors", "synchronised culture", "block and release"],
+  "skills": ["cell-synchrony"],
+  "family": "block-and-release",
+  "cite": ["056:inh1", "056:inh2", "056:inh3", "056:inh7", "056:inh10", "056:fc2", "056:fc6"],
+  "covers": ["056:inh1", "056:inh7", "056:inh10"],
+  "spec": {
+    "story": "A culture of dividing cells, none of them in step. Each dot below is one cell in a sample of the culture.",
+    "illustrative": true,
+    "note": "The lecture gives the order of the stages and the DNA content in each, and says aphidicolin is reversible and acts in early S, but not how long each stage lasts, so the durations are illustrative.",
+    "unit": "h",
+    "step": 0.5,
+    "individual": "cell",
+    "individuals": "cells",
+    "loop": 2,
+    "measure": {
+      "name": "DNA content",
+      "unit": "N",
+      "min": 1.4,
+      "max": 4.9,
+      "bins": 14,
+      "cv": 0.06
+    },
+    "stages": [
+      {"id": "g1", "label": "G1", "duration": 10, "value": 2, "note": "Before DNA synthesis: 2N DNA content."},
+      {"id": "es", "label": "Early S", "duration": 1, "value": [2, 2.2], "note": "DNA synthesis has just begun."},
+      {"id": "s", "label": "Later S", "duration": 7, "value": [2.2, 4], "note": "DNA content rises from 2N to 4N."},
+      {"id": "g2", "label": "G2", "duration": 4, "value": 4, "note": "DNA copied: 4N DNA content."},
+      {"id": "m", "label": "M", "duration": 0.5, "value": 4, "note": "Mitosis: still 4N until the cell divides."}
+    ],
+    "transitions": [
+      {"id": "start", "from": "g1"},
+      {"id": "es-out", "from": "es", "label": "leaving early S"},
+      {"id": "s-out", "from": "s"},
+      {"id": "g2m", "from": "g2"},
+      {"id": "div", "from": "m", "label": "division"}
+    ],
+    "treatments": [
+      {
+        "id": "hold",
+        "label": "Add aphidicolin and leave it in",
+        "because": "Aphidicolin stops the DNA polymerase, so cells stop in early S as they reach it, and cells further on go round and join them.",
+        "effects": [
+          {"kind": "block", "transition": "es-out"}
+        ],
+        "times": [18, 24]
+      },
+      {
+        "id": "wash10",
+        "label": "Add aphidicolin, then wash it out after 10 h",
+        "because": "The inhibitor is reversible, so when it is washed out the cells that were held start DNA synthesis together and cross S as a group.",
+        "effects": [
+          {"kind": "block", "transition": "es-out"},
+          {"kind": "remove-block", "transition": "es-out", "at": 10}
+        ],
+        "times": [16, 19]
+      },
+      {
+        "id": "wash18",
+        "label": "Add aphidicolin, then wash it out after 18 h",
+        "because": "After a longer hold more of the culture has gathered at the block, so the wave that starts when it is washed out is tighter and carries more of the cells.",
+        "effects": [
+          {"kind": "block", "transition": "es-out"},
+          {"kind": "remove-block", "transition": "es-out", "at": 18}
+        ],
+        "times": [21, 24, 27]
+      }
+    ]
+  }
+}

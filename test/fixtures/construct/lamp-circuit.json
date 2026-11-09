@@ -1,0 +1,29 @@
+{
+  "story": "A lamp fed by the mains, with a booster that adds a battery when it is fitted.",
+  "parts": [
+    { "id": "diode", "label": "Diode", "oriented": true },
+    { "id": "lamp", "label": "Lamp" },
+    { "id": "booster", "label": "Booster socket" }
+  ],
+  "factors": [
+    { "id": "mains", "label": "Mains current", "short": "Mains", "always": true },
+    { "id": "cell", "label": "Battery", "short": "Battery" }
+  ],
+  "conditions": [
+    { "id": "alone", "label": "Mains only" },
+    { "id": "both", "label": "Mains and battery", "has": ["cell"] }
+  ],
+  "readout": { "name": "lamp", "levels": ["dark", "dim", "bright"], "base": "dim" },
+  "rules": [
+    { "effect": "needs", "part": "diode", "factor": "mains", "group": "feed", "verb": "pass through" },
+    { "effect": "needs", "part": "lamp" },
+    { "effect": "adds", "part": "booster", "factor": "cell", "verb": "plug into" }
+  ],
+  "changes": [
+    { "id": "nodiode", "kind": "delete", "part": "diode", "label": "Remove the diode" },
+    { "id": "flipdiode", "kind": "flip", "part": "diode", "label": "Turn the diode round" },
+    { "id": "nosocket", "kind": "delete", "part": "booster", "label": "Remove the booster socket" },
+    { "id": "flipsocket", "kind": "flip", "part": "booster", "label": "Turn the booster socket round" },
+    { "id": "nolamp", "kind": "delete", "part": "lamp", "label": "Remove the lamp" }
+  ]
+}

@@ -1,0 +1,274 @@
+{
+  "id": "ho-predict-emsa-competitor-supershift",
+  "title": "A mobility shift gel: competitor DNA and a supershift",
+  "summary": "Labelled DNA is mixed with a binding protein, cold competitor DNA or an antibody, and run on a native gel. Place the bands the film will show, then see how it develops. Each later round changes one thing.",
+  "level": 3,
+  "minutes": 8,
+  "terms": [
+    "electrophoretic mobility shift assay",
+    "EMSA",
+    "supershift",
+    "competitor DNA",
+    "native gel",
+    "sequence specificity",
+    "protein-DNA complex",
+    "cold DNA"
+  ],
+  "skills": [
+    "predict-the-result"
+  ],
+  "family": "emsa-shifts",
+  "cite": [
+    "084:p66",
+    "084:p67",
+    "084:p68",
+    "084:p70",
+    "084:p83",
+    "084:p105",
+    "084:p106"
+  ],
+  "spec": {
+    "technique": "mobility shift assay",
+    "intro": "A short DNA holding a protein's binding site is labelled with 32P. Each sample is mixed, left to settle and run on a native gel. The film sees only the labelled DNA. Bigger things move less far.",
+    "lesson": "Free DNA runs furthest. Protein on the labelled DNA shifts it up the gel, and an antibody on the protein shifts it further. Cold DNA with the real site takes the protein, so the shift is lost.",
+    "axis": {
+      "name": "size",
+      "unit": "",
+      "min": 0.5,
+      "max": 20,
+      "scale": "log",
+      "bigger": "first",
+      "ladder": false
+    },
+    "species": {
+      "D": {
+        "name": "labelled DNA",
+        "short": "DNA",
+        "size": 1,
+        "carries": [
+          "32P"
+        ]
+      },
+      "S": {
+        "name": "labelled DNA with the site scrambled",
+        "short": "DNA*",
+        "size": 1,
+        "carries": [
+          "32P"
+        ]
+      },
+      "P": {
+        "name": "the DNA-binding protein",
+        "short": "P",
+        "size": 4
+      },
+      "C": {
+        "name": "cold (unlabelled) DNA with the same site",
+        "short": "cold",
+        "size": 1
+      },
+      "M": {
+        "name": "cold DNA with the site scrambled",
+        "short": "scr",
+        "size": 1
+      },
+      "A": {
+        "name": "antibody against the protein",
+        "short": "Ab",
+        "size": 8
+      }
+    },
+    "bindings": [
+      {
+        "binder": "P",
+        "on": [
+          "D",
+          "C"
+        ]
+      },
+      {
+        "binder": "A",
+        "on": [
+          "D+P"
+        ]
+      }
+    ],
+    "lanes": [
+      {
+        "id": "a",
+        "name": "Labelled DNA alone",
+        "mix": {
+          "D": 1
+        }
+      },
+      {
+        "id": "b",
+        "name": "DNA and protein",
+        "detail": "Enough protein for about 70% of the DNA.",
+        "mix": {
+          "D": 1,
+          "P": 0.7
+        }
+      },
+      {
+        "id": "c",
+        "name": "DNA, protein and cold DNA",
+        "detail": "50 times as much cold DNA, with the same site.",
+        "mix": {
+          "D": 1,
+          "P": 0.7,
+          "C": 50
+        }
+      },
+      {
+        "id": "d",
+        "name": "DNA, protein and scrambled DNA",
+        "detail": "50 times as much cold DNA, with the site scrambled.",
+        "mix": {
+          "D": 1,
+          "P": 0.7,
+          "M": 50
+        }
+      },
+      {
+        "id": "e",
+        "name": "DNA, protein and antibody",
+        "detail": "Enough antibody for all the complex.",
+        "mix": {
+          "D": 1,
+          "P": 0.7,
+          "A": 0.7
+        }
+      },
+      {
+        "id": "f",
+        "name": "DNA and antibody",
+        "detail": "No protein.",
+        "mix": {
+          "D": 1,
+          "A": 0.7
+        }
+      }
+    ],
+    "detect": {
+      "rule": "label",
+      "name": "32P"
+    },
+    "changes": [
+      {
+        "id": "scrambled-probe",
+        "say": "The labelled DNA is swapped for a copy with its binding site scrambled.",
+        "lesson": "The protein has no site to grip on the labelled DNA now, so every lane shows only free DNA.",
+        "swap": {
+          "D": "S"
+        }
+      },
+      {
+        "id": "swap-cold",
+        "say": "The two cold DNAs are swapped between lanes 3 and 4.",
+        "lesson": "Only cold DNA with the real site takes up the protein, so the shift is lost in lane 4 now and kept in lane 3.",
+        "set": {
+          "c": {
+            "C": 0,
+            "M": 50
+          },
+          "d": {
+            "M": 0,
+            "C": 50
+          }
+        }
+      },
+      {
+        "id": "unfolded",
+        "say": "The protein is unfolded with SDS before it meets the DNA, as in a denaturing gel.",
+        "lesson": "Unfolded protein cannot bind, so no lane is shifted. A native gel keeps the complex; a denaturing one removes it.",
+        "set": {
+          "*": {
+            "P": 0
+          }
+        }
+      }
+    ],
+    "why": [
+      {
+        "kind": "absent",
+        "species": "D+P",
+        "lane": "c",
+        "in": [
+          "base"
+        ],
+        "say": "The protein is soaked up by 50 times as much cold DNA with the same site, so little is left to shift the labelled DNA.",
+        "misconception": "Expected competitor DNA to leave the shift untouched"
+      },
+      {
+        "kind": "present",
+        "species": "D+P",
+        "lane": "d",
+        "in": [
+          "base"
+        ],
+        "say": "Scrambled DNA has no site, so it takes up no protein and the shift is kept."
+      },
+      {
+        "kind": "absent",
+        "species": "D+P",
+        "lane": "d",
+        "in": [
+          "swap-cold"
+        ],
+        "say": "This cold DNA now has the real site, so it takes the protein and the shift is lost."
+      },
+      {
+        "kind": "present",
+        "species": "D+P",
+        "lane": "c",
+        "in": [
+          "swap-cold"
+        ],
+        "say": "This cold DNA now has its site scrambled, so it takes no protein and the shift is kept."
+      },
+      {
+        "kind": "present",
+        "species": "D+P+A",
+        "lane": "e",
+        "in": [
+          "base"
+        ],
+        "say": "The antibody binds the protein on the DNA, so the complex is heavier still: a supershift."
+      },
+      {
+        "kind": "absent",
+        "species": "D+P+A",
+        "lane": "f",
+        "in": [
+          "base"
+        ],
+        "say": "With no protein on the DNA the antibody has nothing to bind, and it is not labelled."
+      },
+      {
+        "kind": "order",
+        "species": [
+          "D+P",
+          "D"
+        ],
+        "in": [
+          "base"
+        ],
+        "say": "The complex is bigger than free DNA, so it moves less far: it looks shifted up the gel."
+      },
+      {
+        "kind": "darker",
+        "lane": "a",
+        "species": "D",
+        "than": {
+          "lane": "b"
+        },
+        "in": [
+          "base"
+        ],
+        "say": "In lane 1 all the labelled DNA is free. With protein, part of it moves into the shifted band."
+      }
+    ],
+    "note": "Beyond the lecture: the competitor DNA lanes. Idealised: the protein binds only its own site, and a 50-fold excess of scrambled DNA takes up none of it."
+  }
+}

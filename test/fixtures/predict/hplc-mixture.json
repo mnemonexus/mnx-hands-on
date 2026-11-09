@@ -1,0 +1,21 @@
+{
+  "skin": "trace",
+  "technique": "column run",
+  "intro": "A mixture of three compounds is pumped through a column, and a detector records each as it comes off. Each compound comes off at its own time.",
+  "lesson": "A compound always comes off at the same time, and the peak is as tall as there is of it, so the sample shows the standards' peaks in proportion.",
+  "axis": { "name": "retention", "unit": "", "min": 1, "max": 100, "scale": "log", "bigger": "last", "run": { "name": "time", "unit": "min", "min": 0, "max": 10 } },
+  "species": {
+    "p": { "name": "compound P", "short": "P", "at": 2 },
+    "q": { "name": "compound Q", "short": "Q", "at": 5 },
+    "r": { "name": "compound R", "short": "R", "at": 8, "width": 1.5 }
+  },
+  "lanes": [
+    { "id": "s", "name": "Standard mixture", "mix": { "p": 1, "q": 1, "r": 1 } },
+    { "id": "t", "name": "Test sample", "mix": { "p": 0.5, "r": 1 } }
+  ],
+  "detect": { "rule": "all" },
+  "changes": [
+    { "id": "no-r", "say": "Compound R is left out of the test sample.", "set": { "t": { "r": 0 } } },
+    { "id": "more-q", "say": "Compound Q is added to the test sample.", "set": { "t": { "q": 2 } } }
+  ]
+}

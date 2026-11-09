@@ -1,0 +1,70 @@
+{
+  "title": "Which sample: the unnamed lane is named before the result is run, in each of three rounds",
+  "surface": "standalone",
+  "settings": {
+    "level": "2"
+  },
+  "drive": [
+    {
+      "click": "[data-activity=ho-predict-film-and-blots]"
+    },
+    {
+      "waitFor": "[data-role=mystery]"
+    },
+    {
+      "click": "[data-sample='0']"
+    },
+    {
+      "click": "[data-action=run]"
+    },
+    {
+      "waitFor": "[data-role=after]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-role=mystery]"
+    },
+    {
+      "click": "[data-sample='0']"
+    },
+    {
+      "click": "[data-action=run]"
+    },
+    {
+      "waitFor": "[data-role=after]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-role=mystery]"
+    },
+    {
+      "click": "[data-sample='0']"
+    },
+    {
+      "click": "[data-action=run]"
+    },
+    {
+      "waitFor": "[data-role=after]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "expect": "complete"
+    }
+  ],
+  "expectResult": {
+    "completed": true,
+    "practice": {
+      "version": 1,
+      "activityId": "ho-predict-film-and-blots",
+      "valid": true,
+      "hintsUsed": 0,
+      "attempts": 3
+    }
+  }
+}

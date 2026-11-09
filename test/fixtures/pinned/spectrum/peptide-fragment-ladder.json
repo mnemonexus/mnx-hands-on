@@ -1,0 +1,61 @@
+{
+  "id": "ho-spectrum-059-ladder-of-the-lecture-peptides",
+  "title": "Reading the b ions of a peptide, one residue at a time",
+  "summary": "Collision breaks a protonated peptide at its peptide bonds, and each ion differs from the next by one residue. Name the residue in each gap of the b series. A fresh peptide every time, two of them from the lecture.",
+  "level": 3,
+  "minutes": 5,
+  "terms": [
+    "collision induced dissociation",
+    "peptide bonds",
+    "product ion spectrum",
+    "fragment ions",
+    "DAFLGSFLYEYSR",
+    "TPAAAAAMNLASPR",
+    "tandem MS",
+    "sequence ions"
+  ],
+  "skills": [
+    "ms-peptide-sequencing"
+  ],
+  "family": "spectrum-059-ladder-of-the-lecture-peptides",
+  "cite": [
+    "059:p76",
+    "059:p77",
+    "059:p78",
+    "059:p88",
+    "059:p89",
+    "059:p90",
+    "059:p91",
+    "059:p92",
+    "059:p93"
+  ],
+  "spec": {
+    "mode": "positive",
+    "massType": "monoisotopic",
+    "peptides": [
+      {
+        "sequence": "DAFLGSFLYEYSR"
+      },
+      {
+        "sequence": "TPAAAAAMNLASPR"
+      },
+      {
+        "sequence": "NFESGAK"
+      },
+      {
+        "sequence": "GDVSAELTR"
+      }
+    ],
+    "charges": [
+      1,
+      3
+    ],
+    "tasks": [
+      "ladder"
+    ],
+    "ions": [
+      "b"
+    ],
+    "note": "Singly charged b ions, which grow from the N-terminal end; each gap between neighbours is one residue."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "bins": [
+    { "label": "The Roman Republic", "note": "Rule by elected magistrates for a year at a time, with the Senate and the tribunes as checks (509 to 27 BC)." },
+    { "label": "The Roman Empire", "note": "Rule by an emperor who held the army's loyalty, after Augustus took power in 27 BC." }
+  ],
+  "cards": [
+    { "t": "Two consuls were chosen each year, and each could veto the other's decisions.", "bin": 0, "why": "Annual paired consuls belong to the Republic; an emperor had no equal to check him." },
+    { "t": "Magistrates held office for one year, so no single man could keep power for long.", "bin": 0, "why": "Short terms were how the Republic guarded against a king." },
+    { "t": "Tribunes of the plebs could veto laws and protect ordinary citizens from the magistrates.", "bin": 0, "why": "The tribunes were a Republican check; under the emperors the office lost its force." },
+    { "t": "The Senate was the chief body of advice, and its members were mostly former magistrates.", "bin": 0, "why": "In the Republic the Senate steered policy; under emperors it mostly followed them." },
+    { "t": "Augustus took the title princeps, meaning first citizen, while keeping the forms of republican government.", "bin": 1, "why": "Augustus founded the Empire and hid it behind Republican forms." },
+    { "t": "Emperors commanded the armies and were guarded in Rome by the Praetorian Guard.", "bin": 1, "why": "Control of the soldiers was the base of an emperor's power." },
+    { "t": "After Augustus, power passed from emperor to emperor by adoption, inheritance or seizure.", "bin": 1, "why": "The Republic elected its magistrates; the Empire handed on one man's power." },
+    { "t": "Emperors came to be honoured as gods after their death.", "bin": 1, "why": "Worship of dead emperors began under the Empire." },
+    { "t": "The Senate continued to meet in the city of Rome.", "bin": "both", "why": "The Senate sat in Rome in both periods, though its power was very different." }
+  ]
+}

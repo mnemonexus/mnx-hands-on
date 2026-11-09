@@ -1,0 +1,72 @@
+{
+  "id": "ho-spectrum-charge-series",
+  "title": "Charge and mass from an electrospray series",
+  "summary": "Read a charge from isotope spacing, then find the charge and mass of a molecule from two neighbouring peaks of its electrospray series, then from the whole series. A fresh spectrum every time.",
+  "level": 2,
+  "minutes": 6,
+  "terms": [
+    "electrospray ionisation",
+    "multiply charged ions",
+    "charge state",
+    "charge states",
+    "ESI mass spectrum",
+    "protein mass from m/z",
+    "m/z",
+    "adjacent peaks",
+    "isotope peaks",
+    "deconvolution"
+  ],
+  "skills": [
+    "ms-charge-states"
+  ],
+  "family": "ms-charge-series",
+  "cite": [
+    "051:p46",
+    "051:p47",
+    "051:p48",
+    "051:p49",
+    "051:p50",
+    "051:p51",
+    "051:p53",
+    "051:p54",
+    "051:p55",
+    "051:p56",
+    "051:p57",
+    "051:p58",
+    "051:p59",
+    "051:p60",
+    "051:p61",
+    "051:p62",
+    "051:p63",
+    "060:p1",
+    "060:p2",
+    "060:p15",
+    "060:p39",
+    "060:p40",
+    "060:p41",
+    "060:p42",
+    "060:p44",
+    "060:p45"
+  ],
+  "covers": [
+    "051:p54",
+    "051:p55",
+    "051:p57"
+  ],
+  "spec": {
+    "mode": "positive",
+    "massType": "average",
+    "mass": {
+      "min": 8000,
+      "max": 18000
+    },
+    "charges": [
+      7,
+      22
+    ],
+    "tasks": [
+      "deconvolute"
+    ],
+    "note": "Masses are average masses, as for a protein whose isotope peaks are not separated."
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "id": "ho-grow-063-fork-meets-lesion",
+  "title": "A replication fork meets a lesion",
+  "summary": "Replication forks arrive one after another at a stretch of template with a lesion in it. Say where the forks pile up, how they are spread along the template, and how long it takes for a given share to be stuck.",
+  "level": 2,
+  "minutes": 5,
+  "terms": ["replication fork arrest", "leading strand template", "lagging strand template", "bulky adducts", "UV photoproducts", "cyclobutane pyrimidine dimer", "Okazaki fragments", "stalled replication fork", "RNA primer"],
+  "skills": ["replication-fork-arrest"],
+  "family": "fork-meets-lesion",
+  "cite": ["063:b7", "063:b8", "063:c4", "063:c5", "063:u5", "063:k1", "063:k3", "063:k4", "063:k5", "063:k6", "063:k7"],
+  "covers": ["063:k4", "063:k6", "063:u5"],
+  "spec": {
+    "illustrative": true,
+    "unit": "min",
+    "step": 1,
+    "individual": "fork",
+    "individuals": "forks",
+    "measure": {
+      "name": "distance along the template",
+      "unit": "kb",
+      "min": 0,
+      "max": 15,
+      "bins": 15
+    },
+    "stages": [
+      {"id": "up", "label": "Before the lesion", "duration": 10, "value": [0, 5], "note": "Forks travelling up to the lesion, 0 to 5 kb."},
+      {"id": "past", "label": "Past the lesion", "duration": 20, "value": [5, 15], "note": "Forks that have gone beyond the lesion, 5 to 15 kb."}
+    ],
+    "transitions": [
+      {"id": "lesion", "from": "up", "label": "the lesion"},
+      {"id": "end", "from": "past", "label": "the end of the stretch"}
+    ],
+    "story": "Replication forks reach this stretch of template one after another at a steady rate and travel along it. Each dot below is one fork in a sample of the forks on the stretch.",
+    "note": "The lecture says which lesions arrest a fork and which do not, not how fast forks move, so the times and distances are illustrative. A gap left in the lagging strand, and a fork being rescued later, are not modelled.",
+    "treatments": [
+      {
+        "id": "bulky",
+        "label": "Put a bulky adduct in the leading-strand template",
+        "because": "A bulky lesion physically hinders the polymerase, and leading-strand synthesis is continuous, so a fork that meets it in the leading strand template stops there.",
+        "effects": [
+          {"kind": "block", "transition": "lesion"}
+        ],
+        "times": [10, 20, 30]
+      },
+      {
+        "id": "uv",
+        "label": "Put a UV photoproduct in the leading-strand template",
+        "because": "Both UV photoproducts distort the strand on a large scale and arrest the fork, as bulky adducts do, so forks gather in front of it.",
+        "effects": [
+          {"kind": "block", "transition": "lesion"}
+        ],
+        "times": [15, 25]
+      },
+      {
+        "id": "lag",
+        "label": "Put the same lesion in the lagging-strand template",
+        "because": "Lagging-strand synthesis is repeatedly re-primed, so a new RNA primer is laid down beyond the lesion and the fork carries on, leaving a gap behind it.",
+        "control": true,
+        "effects": [],
+        "times": [20, 30]
+      }
+    ]
+  }
+}

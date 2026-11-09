@@ -1,0 +1,193 @@
+{
+  "id": "ho-network-eif2-stress",
+  "title": "eIF2 phosphorylation and translation",
+  "summary": "Change one thing in a prion-infected neuron and say what happens to eIF2 phosphorylation, global translation and synapses. Then watch the change travel.",
+  "level": 2,
+  "minutes": 5,
+  "terms": [
+    "eIF2 phosphorylation",
+    "eIF2B",
+    "ternary complex",
+    "integrated stress response",
+    "GADD34",
+    "salubrinal",
+    "PERK kinase",
+    "translational repression",
+    "unfolded protein response"
+  ],
+  "skills": [
+    "translation-control"
+  ],
+  "family": "eif2-network",
+  "cite": [
+    "031:p20",
+    "031:p22",
+    "031:p25",
+    "031:p26",
+    "031:p27",
+    "031:p28",
+    "031:p33",
+    "031:p34",
+    "031:p38",
+    "031:p39",
+    "031:p42",
+    "031:p43",
+    "031:p47",
+    "031:p49",
+    "031:p51",
+    "031:p106"
+  ],
+  "covers": [
+    "031:p26",
+    "031:p28",
+    "031:p34"
+  ],
+  "spec": {
+    "story": "A neuron with misfolded prion protein. Translation is already held down a little.",
+    "nodes": [
+      {
+        "id": "unf",
+        "label": "Unfolded prion protein",
+        "x": 12,
+        "y": 16
+      },
+      {
+        "id": "kin",
+        "label": "PERK kinase",
+        "x": 37,
+        "y": 16
+      },
+      {
+        "id": "gadd",
+        "label": "GADD34 phosphatase",
+        "x": 37,
+        "y": 50,
+        "level": "low"
+      },
+      {
+        "id": "eifp",
+        "label": "eIF2α-P",
+        "x": 62,
+        "y": 16,
+        "note": "Phosphorylated eIF2 alpha."
+      },
+      {
+        "id": "eif2b",
+        "label": "Free eIF2B",
+        "x": 62,
+        "y": 50
+      },
+      {
+        "id": "ter",
+        "label": "Ternary complex",
+        "x": 87,
+        "y": 50
+      },
+      {
+        "id": "trans",
+        "label": "Global translation",
+        "x": 87,
+        "y": 84
+      },
+      {
+        "id": "syn",
+        "label": "Synapse number",
+        "x": 62,
+        "y": 84
+      }
+    ],
+    "edges": [
+      {
+        "from": "unf",
+        "to": "kin",
+        "sign": "+",
+        "reason": "BiP recognises the unfolded prion protein, which triggers PERK kinase phosphorylation.",
+        "claim": "p38"
+      },
+      {
+        "from": "kin",
+        "to": "eifp",
+        "sign": "+",
+        "reason": "PERK kinase phosphorylates the alpha subunit of eIF2.",
+        "claim": "p39"
+      },
+      {
+        "from": "gadd",
+        "to": "eifp",
+        "sign": "-",
+        "reason": "GADD34 is an eIF2α phosphatase, so it takes the phosphate off again.",
+        "claim": "p42"
+      },
+      {
+        "from": "eifp",
+        "to": "eif2b",
+        "sign": "-",
+        "reason": "Phosphorylated eIF2 holds on to eIF2B, so eIF2B is sequestered and cannot exchange GDP for GTP.",
+        "claim": "p26"
+      },
+      {
+        "from": "eif2b",
+        "to": "ter",
+        "sign": "+",
+        "reason": "Free eIF2B recycles eIF2.GDP to eIF2.GTP, which can take up initiator tRNA again.",
+        "claim": "p20"
+      },
+      {
+        "from": "ter",
+        "to": "trans",
+        "sign": "+",
+        "reason": "The ternary complex delivers the initiator tRNA, so initiation can continue.",
+        "claim": "p28"
+      },
+      {
+        "from": "trans",
+        "to": "syn",
+        "sign": "+",
+        "reason": "Neuronal plasticity and making synapses need translation.",
+        "claim": "p34"
+      },
+      {
+        "from": "trans",
+        "to": "unf",
+        "notModelled": "Less translation means less new unfolded protein, which would ease the signal. But it removes none already made (p51). That loop is left out."
+      }
+    ],
+    "outputs": [
+      "eifp",
+      "trans",
+      "syn"
+    ],
+    "perturbations": [
+      {
+        "id": "shprp",
+        "node": "unf",
+        "kind": "remove",
+        "label": "Block the prion protein piling up"
+      },
+      {
+        "id": "gadd34",
+        "node": "gadd",
+        "kind": "more",
+        "label": "Overexpress GADD34"
+      },
+      {
+        "id": "salub",
+        "node": "gadd",
+        "kind": "block",
+        "label": "Treat with salubrinal"
+      },
+      {
+        "id": "s51a",
+        "node": "eifp",
+        "kind": "remove",
+        "label": "Make eIF2α unable to be phosphorylated",
+        "outputs": [
+          "eif2b",
+          "trans",
+          "syn"
+        ]
+      }
+    ],
+    "note": "Making eIF2 unable to be phosphorylated comes from the lecture's stress experiment, not from the prion mice."
+  }
+}

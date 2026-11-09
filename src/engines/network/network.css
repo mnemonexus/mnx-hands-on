@@ -1,0 +1,120 @@
+/*
+ * Knock It Out. Everything comes from the --mnx-* tokens. The picture sits on a filled card; every node is a filled
+ * surface with its level drawn as three bars. Colour means something: the accent is the change as it travels and where it
+ * lands, the quiet text colour is the way it was, and success and danger mark right and wrong.
+ */
+.ho-net { display: flex; flex-direction: column; gap: 0.75rem; min-width: 0; }
+.ho-net__announce { font-size: 1rem; }
+.ho-net__question { font-size: 1.1875rem; font-weight: 600; line-height: 1.35; font-family: var(--mnx-font-heading); }
+.ho-net__story { font-size: 0.875rem; color: var(--mnx-text); }
+
+.ho-net__card {
+  background: var(--mnx-surface); border: var(--mnx-edge-width) solid var(--mnx-edge-color); border-radius: var(--mnx-radius-surface);
+  box-shadow: var(--mnx-shadow); padding: 0.375rem;
+}
+.ho-net__stage { position: relative; width: 100%; container: hnet / inline-size; user-select: none; -webkit-user-select: none; }
+.ho-net__edges { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.ho-net__edges .ho-net__hit { pointer-events: stroke; }
+
+.ho-net__line { fill: none; stroke: var(--mnx-text-subtle); stroke-width: 2; stroke-linecap: round; transition: stroke var(--mnx-duration), stroke-width var(--mnx-duration); }
+.ho-net__head { fill: var(--mnx-text-subtle); stroke: var(--mnx-text-subtle); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: fill var(--mnx-duration), stroke var(--mnx-duration); }
+.ho-net__head--bar { fill: none; stroke-width: 3.5; }
+.ho-net__edge[data-state="lit"] .ho-net__line { stroke: var(--mnx-accent); stroke-width: 3.5; }
+.ho-net__edge[data-state="lit"] .ho-net__head { fill: var(--mnx-accent); stroke: var(--mnx-accent); }
+.ho-net__edge[data-state="lit"] .ho-net__head--bar { fill: none; }
+.ho-net__edge[data-state="done"] .ho-net__line { stroke: var(--mnx-accent); stroke-width: 2.5; opacity: 0.7; }
+.ho-net__edge[data-state="done"] .ho-net__head { fill: var(--mnx-accent); stroke: var(--mnx-accent); opacity: 0.7; }
+.ho-net__edge[data-state="done"] .ho-net__head--bar { fill: none; }
+.ho-net__edge[data-selected="true"] .ho-net__line { stroke-width: 3.5; }
+.ho-net__edge[data-model="no"] .ho-net__line { stroke-dasharray: 1 7; stroke-width: 3; }
+.ho-net__edge[data-model="no"] .ho-net__head { fill: none; }
+.ho-net__chip circle { fill: var(--mnx-surface-2); }
+.ho-net__chip text { fill: var(--mnx-text); font-size: 13px; font-weight: 700; text-anchor: middle; dominant-baseline: central; font-family: var(--mnx-font); }
+.ho-net__chip--no circle { fill: var(--mnx-text-muted); }
+.ho-net__chip--no text { fill: var(--mnx-surface); }
+.ho-net__chip { cursor: default; }
+.ho-net__chip--no { cursor: pointer; }
+.ho-net__travel { fill: var(--mnx-accent); stroke: var(--mnx-surface-2); stroke-width: 2.5; }
+
+.ho-net__node {
+  position: absolute; transform: translate(-50%, -50%); z-index: 1; margin: 0; cursor: pointer; text-align: center;
+  width: clamp(4.75rem, 19cqw, 7.75rem); min-height: 3.25rem; padding: 0.375rem 0.375rem 0.3125rem;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.1875rem;
+  font-family: var(--mnx-font); font-size: 0.8125rem; line-height: 1.2; color: var(--mnx-text);
+  background: var(--mnx-surface-2); border: 0; border-radius: var(--mnx-radius-field); box-shadow: var(--mnx-shadow);
+  transition: background-color var(--mnx-duration);
+}
+.ho-net__node:focus-visible { outline: 2px solid var(--mnx-focus); outline-offset: 2px; }
+.ho-net__node[data-changed="true"] { background: var(--mnx-accent-soft); }
+.ho-net__node[data-flash="true"] { animation: ho-net-flash 700ms ease-out; }
+@keyframes ho-net-flash { 0% { transform: translate(-50%, -50%) scale(1.14); } 100% { transform: translate(-50%, -50%) scale(1); } }
+:root[data-mnx-motion="reduced"] .ho-net__node[data-flash="true"] { animation: none; }
+.ho-net__node[data-output="true"] { box-shadow: 0 0 0 2px var(--mnx-accent), var(--mnx-shadow); }
+.ho-net__name { font-weight: 600; overflow-wrap: break-word; hyphens: manual; }
+@container hnet (max-width: 32rem) {
+  .ho-net__node { font-size: 0.75rem; padding: 0.3125rem 0.1875rem 0.25rem; }
+  .ho-net__meter i { width: 0.8125rem; }
+  .ho-net__level { font-size: 0.625rem; }
+}
+.ho-net__meter { display: flex; gap: 3px; }
+.ho-net__meter i { display: block; width: 1.125rem; height: 0.375rem; border-radius: 999px; background: var(--mnx-surface); transition: background-color var(--mnx-duration); }
+.ho-net__node[data-level="1"] .ho-net__meter i:nth-child(-n+1),
+.ho-net__node[data-level="2"] .ho-net__meter i:nth-child(-n+2),
+.ho-net__node[data-level="3"] .ho-net__meter i { background: var(--mnx-accent); }
+.ho-net__level { font-size: 0.6875rem; color: var(--mnx-text); font-variant-numeric: tabular-nums; }
+.ho-net__node[data-changed="true"] .ho-net__level { font-weight: 700; }
+.ho-net__chips { position: absolute; left: 0; right: 0; top: -0.6875rem; display: flex; justify-content: center; gap: 0.25rem; pointer-events: none; }
+.ho-net__badge {
+  display: inline-flex; align-items: center; gap: 0.1875rem; padding: 0.0625rem 0.4375rem; font-size: 0.6875rem; font-weight: 700; line-height: 1.35;
+  border-radius: 999px; background: var(--mnx-accent); color: var(--mnx-accent-text); white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+.ho-net__badge--ask { background: var(--mnx-text); color: var(--mnx-surface); }
+.ho-net__badge--do { background: var(--mnx-text-muted); color: var(--mnx-surface); }
+.ho-net__badge--you { background: var(--mnx-text-muted); color: var(--mnx-surface); }
+.ho-net__badge--you[data-state="met"] { background: color-mix(in srgb, var(--mnx-success) 22%, var(--mnx-surface)); color: var(--mnx-text); box-shadow: inset 0 0 0 1.5px var(--mnx-success); }
+.ho-net__badge--you[data-state="miss"] { background: color-mix(in srgb, var(--mnx-danger) 22%, var(--mnx-surface)); color: var(--mnx-text); box-shadow: inset 0 0 0 1.5px var(--mnx-danger); }
+.ho-net__note { position: absolute; right: -0.25rem; bottom: -0.3125rem; width: 1.125rem; height: 1.125rem; border-radius: 50%; background: var(--mnx-text-muted); color: var(--mnx-surface); font-size: 0.6875rem; font-weight: 700; line-height: 1.125rem; text-align: center; pointer-events: none; }
+
+.ho-net__caption { min-height: 2.75rem; padding: 0.5rem 0.75rem; background: var(--mnx-surface-2); border-radius: var(--mnx-radius-field); font-size: 0.9375rem; display: flex; flex-direction: column; gap: 0.125rem; }
+.ho-net__caption[data-kind="idle"] { font-size: 0.875rem; }
+.ho-net__caption p { margin: 0; }
+.ho-net__caption strong { font-weight: 700; }
+.ho-net__claim { font-size: 0.75rem; color: var(--mnx-text); }
+.ho-net__count { font-size: 0.75rem; font-weight: 700; color: var(--mnx-text); font-variant-numeric: tabular-nums; }
+
+.ho-net__ask { display: flex; flex-direction: column; gap: 0.5rem; }
+.ho-net__row { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.25rem; align-items: center; }
+@container ho (min-width: 34rem) { .ho-net__row { grid-template-columns: minmax(8rem, 12rem) minmax(0, 1fr); gap: 0.75rem; } }
+.ho-net__rowlabel { font-size: 0.9375rem; font-weight: 600; }
+.ho-net__seg { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.375rem; }
+.ho-net__opt {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.375rem; min-height: 2.5rem; padding: 0.375rem 0.5rem; margin: 0;
+  font-family: var(--mnx-font); font-size: 0.875rem; font-weight: 600; color: var(--mnx-text); cursor: pointer; text-align: center;
+  background: var(--mnx-surface-2); border: 0; border-radius: var(--mnx-radius-button); transition: background-color var(--mnx-duration);
+}
+.ho-net__opt:hover:not(:disabled) { background: var(--mnx-accent-soft); }
+.ho-net__opt:focus-visible { outline: 2px solid var(--mnx-focus); outline-offset: 2px; }
+.ho-net__opt[aria-pressed="true"] { background: var(--mnx-accent); color: var(--mnx-accent-text); }
+.ho-net__opt[data-state="correct"] { background: var(--mnx-success); color: var(--mnx-surface); }
+.ho-net__opt[data-state="incorrect"] { background: var(--mnx-danger); color: var(--mnx-surface); }
+.ho-net__opt:disabled { cursor: default; }
+.ho-net__opts { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.375rem; }
+@container ho (min-width: 40rem) { .ho-net__opts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.ho-net__opts .ho-net__opt { justify-content: flex-start; text-align: left; }
+.ho-net__go { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+
+.ho-net__log { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.375rem; }
+.ho-net__log li { padding: 0.5rem 0.75rem; background: var(--mnx-surface-2); border-radius: var(--mnx-radius-field); font-size: 0.875rem; }
+.ho-net__log li[data-now="true"] { background: var(--mnx-accent-soft); }
+.ho-net__log li > span { display: block; color: var(--mnx-text); font-size: 0.8125rem; }
+.ho-net__verdict { display: flex; flex-direction: column; gap: 0.375rem; }
+.ho-net__verdict-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 0.75rem; padding: 0.5rem 0.75rem; background: var(--mnx-surface-2); border-radius: var(--mnx-radius-field); font-size: 0.9375rem; }
+.ho-net__verdict-row[data-state="met"] { background: var(--mnx-accent-soft); }
+.ho-net__verdict-row b { font-weight: 700; }
+.ho-net__tag { font-size: 0.75rem; font-weight: 700; padding: 0.0625rem 0.4375rem; border-radius: 999px; background: var(--mnx-text-muted); color: var(--mnx-surface); }
+.ho-net__tag[data-state="met"] { background: color-mix(in srgb, var(--mnx-success) 22%, var(--mnx-surface)); color: var(--mnx-text); box-shadow: inset 0 0 0 1.5px var(--mnx-success); }
+.ho-net__tag[data-state="miss"] { background: color-mix(in srgb, var(--mnx-danger) 22%, var(--mnx-surface)); color: var(--mnx-text); box-shadow: inset 0 0 0 1.5px var(--mnx-danger); }
+.ho-net__again { align-self: flex-start; }
+
+.ho-net__gaps { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.ho-net__gaps .mnx-button { background: var(--mnx-surface-2); }

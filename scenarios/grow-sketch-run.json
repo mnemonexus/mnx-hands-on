@@ -1,0 +1,127 @@
+{
+  "title": "Grow, Arrest, Count: draw bars with the keyboard, press Run, skip to the end of the time-lapse, and the run reports one criterion per round",
+  "surface": "standalone",
+  "settings": {
+    "level": "1"
+  },
+  "drive": [
+    {
+      "click": "[data-activity=ho-grow-056-drug-arrest-points]"
+    },
+    {
+      "waitFor": "[data-engine=grow]"
+    },
+    {
+      "press": "Shift+ArrowUp",
+      "on": "[data-bin=\"3\"]"
+    },
+    {
+      "press": "Shift+ArrowUp",
+      "on": "[data-bin=\"5\"]"
+    },
+    {
+      "press": "Shift+ArrowUp",
+      "on": "[data-bin=\"7\"]"
+    },
+    {
+      "press": "Shift+ArrowUp",
+      "on": "[data-bin=\"9\"]"
+    },
+    {
+      "press": "Shift+ArrowUp",
+      "on": "[data-bin=\"10\"]"
+    },
+    {
+      "click": "[data-action=run]"
+    },
+    {
+      "click": "[data-action=skip]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "press": "Shift+ArrowUp",
+      "on": "[data-bin=\"3\"]"
+    },
+    {
+      "press": "Shift+ArrowUp",
+      "on": "[data-bin=\"5\"]"
+    },
+    {
+      "press": "Shift+ArrowUp",
+      "on": "[data-bin=\"7\"]"
+    },
+    {
+      "press": "Shift+ArrowUp",
+      "on": "[data-bin=\"9\"]"
+    },
+    {
+      "press": "Shift+ArrowUp",
+      "on": "[data-bin=\"10\"]"
+    },
+    {
+      "click": "[data-action=run]"
+    },
+    {
+      "click": "[data-action=skip]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-engine=grow]"
+    },
+    {
+      "press": "Shift+ArrowUp",
+      "on": "[data-bin=\"3\"]"
+    },
+    {
+      "press": "Shift+ArrowUp",
+      "on": "[data-bin=\"5\"]"
+    },
+    {
+      "press": "Shift+ArrowUp",
+      "on": "[data-bin=\"7\"]"
+    },
+    {
+      "press": "Shift+ArrowUp",
+      "on": "[data-bin=\"9\"]"
+    },
+    {
+      "press": "Shift+ArrowUp",
+      "on": "[data-bin=\"10\"]"
+    },
+    {
+      "click": "[data-action=run]"
+    },
+    {
+      "click": "[data-action=skip]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "expect": "complete"
+    }
+  ],
+  "expectResult": {
+    "completed": true,
+    "practice": {
+      "version": 1,
+      "activityId": "ho-grow-056-drug-arrest-points",
+      "valid": true,
+      "hintsUsed": 0,
+      "attempts": 3
+    }
+  }
+}

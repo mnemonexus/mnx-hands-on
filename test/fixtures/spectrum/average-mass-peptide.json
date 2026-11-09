@@ -1,0 +1,12 @@
+{
+  "mode": "positive",
+  "massType": "average",
+  "peptides": [{ "sequence": "FVNQHLCGSHLVEALYLVCGERGFFYTPKA" }, { "sequence": "GIVEQCCTSICSLYQLENYCN" }],
+  "modifications": [
+    { "id": "carbamidomethyl", "name": "carbamidomethylation", "delta": 57.0519, "residues": ["C"] },
+    { "id": "deamidation", "name": "deamidation", "delta": 0.984, "residues": ["N", "Q"] },
+    { "id": "formyl", "name": "formylation", "delta": 28.0101, "residues": ["K", "N-term"] }
+  ],
+  "charges": [3, 8],
+  "adducts": [{ "name": "K", "mass": 38.9637 }]
+}

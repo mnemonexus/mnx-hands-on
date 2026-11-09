@@ -1,0 +1,193 @@
+{
+  "id": "ho-network-trp-operon",
+  "title": "The trp operon: repressor and attenuator",
+  "summary": "Change one thing in a bacterium that has plenty of tryptophan, say what happens to transcription, then watch the change travel along the arrows one hop at a time.",
+  "level": 2,
+  "minutes": 5,
+  "terms": [
+    "trp operon",
+    "tryptophan operon",
+    "trp repressor",
+    "TrpR",
+    "attenuation",
+    "attenuator",
+    "leader sequence",
+    "repressible operon",
+    "repressible genes",
+    "operator"
+  ],
+  "skills": [
+    "operon-regulation"
+  ],
+  "family": "trp-operon-network",
+  "cite": [
+    "012:p57",
+    "012:p60",
+    "012:p61",
+    "012:p62",
+    "012:p63",
+    "012:p64",
+    "012:p67",
+    "012:p68",
+    "012:p74",
+    "012:p75",
+    "012:p76",
+    "012:p79",
+    "012:p80",
+    "012:p82",
+    "012:p83",
+    "012:p85"
+  ],
+  "spec": {
+    "story": "A bacterium growing with plenty of tryptophan. The two switches on the trp operon are at work.",
+    "nodes": [
+      {
+        "id": "trpR",
+        "label": "TrpR protein",
+        "x": 12,
+        "y": 16,
+        "note": "TrpR also switches off its own gene. That is left out."
+      },
+      {
+        "id": "trp",
+        "label": "Tryptophan",
+        "x": 12,
+        "y": 50,
+        "level": "high",
+        "note": "The cell also makes tryptophan, which closes a loop. The dotted arrow marks the cut."
+      },
+      {
+        "id": "ttrna",
+        "label": "Trp-tRNA",
+        "x": 37,
+        "y": 84
+      },
+      {
+        "id": "active",
+        "label": "Active TrpR",
+        "x": 37,
+        "y": 16,
+        "needs": "all"
+      },
+      {
+        "id": "term",
+        "label": "Terminator hairpin",
+        "x": 62,
+        "y": 84,
+        "note": "The leader can take two shapes. Here it is one on or off switch."
+      },
+      {
+        "id": "tx",
+        "label": "Transcription",
+        "x": 62,
+        "y": 16
+      },
+      {
+        "id": "genes",
+        "label": "Full-length mRNA",
+        "x": 87,
+        "y": 50
+      },
+      {
+        "id": "enz",
+        "label": "Tryptophan synthesis",
+        "x": 87,
+        "y": 84
+      }
+    ],
+    "edges": [
+      {
+        "from": "trp",
+        "to": "active",
+        "sign": "+",
+        "reason": "Two tryptophan molecules bind the TrpR dimer and expose its DNA-binding site.",
+        "claim": "p63"
+      },
+      {
+        "from": "trpR",
+        "to": "active",
+        "sign": "+",
+        "reason": "TrpR is a dimer that is inactive on its own, so only TrpR that exists can be switched on.",
+        "claim": "p60"
+      },
+      {
+        "from": "active",
+        "to": "tx",
+        "sign": "-",
+        "reason": "Active TrpR binds the operator, so RNA polymerase is kept off the promoter.",
+        "claim": "p64"
+      },
+      {
+        "from": "trp",
+        "to": "ttrna",
+        "sign": "+",
+        "reason": "Attenuation samples tryptophan carried on tRNA, so charged tRNA follows the supply.",
+        "claim": "p85"
+      },
+      {
+        "from": "ttrna",
+        "to": "term",
+        "sign": "+",
+        "reason": "With plenty of Trp-tRNA the ribosome runs quickly through region 1 and covers region 2, so regions 3 and 4 pair into the terminator.",
+        "claim": "p82"
+      },
+      {
+        "from": "tx",
+        "to": "genes",
+        "sign": "+",
+        "reason": "Polymerase that has started on the operon goes on to transcribe the trp genes.",
+        "claim": "p80"
+      },
+      {
+        "from": "term",
+        "to": "genes",
+        "sign": "-",
+        "reason": "The 3-4 hairpin and the run of U residues make the polymerase let go of the RNA.",
+        "claim": "p74"
+      },
+      {
+        "from": "genes",
+        "to": "enz",
+        "sign": "+",
+        "reason": "The trp genes encode the enzymes that make tryptophan.",
+        "claim": "p57"
+      },
+      {
+        "from": "enz",
+        "to": "trp",
+        "notModelled": "The enzymes make tryptophan, which closes a loop. It would settle between on and off, which four levels cannot show."
+      }
+    ],
+    "outputs": [
+      "tx",
+      "genes",
+      "enz"
+    ],
+    "perturbations": [
+      {
+        "id": "norepr",
+        "node": "trpR",
+        "kind": "remove",
+        "label": "Delete the trpR gene"
+      },
+      {
+        "id": "starve",
+        "node": "trp",
+        "kind": "remove",
+        "label": "Take the tryptophan away"
+      },
+      {
+        "id": "noterm",
+        "node": "term",
+        "kind": "remove",
+        "label": "Delete the attenuator in the leader"
+      },
+      {
+        "id": "nocharge",
+        "node": "ttrna",
+        "kind": "block",
+        "label": "Stop tRNA being charged with tryptophan"
+      }
+    ]
+  }
+}

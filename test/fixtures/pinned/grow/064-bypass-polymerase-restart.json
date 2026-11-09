@@ -1,0 +1,67 @@
+{
+  "id": "ho-grow-064-bypass-polymerase-restart",
+  "title": "A bypass polymerase lets stalled forks go on",
+  "summary": "Forks that meet a lesion in the leading-strand template stop. A bypass polymerase can take over and carry them past. Say where the forks are at a given time, and how the timing of the bypass changes the picture.",
+  "level": 2,
+  "minutes": 5,
+  "terms": ["translesion synthesis", "bypass polymerase", "stalled replication fork", "Pol V", "Pol III", "leading strand template", "replication fork arrest", "error-prone DNA synthesis"],
+  "skills": ["replication-fork-arrest"],
+  "family": "bypass-polymerase-restart",
+  "cite": ["064:k3", "064:k4", "064:k5", "064:l1", "064:l2", "064:l3", "064:l4", "064:l5", "064:l6", "064:l7"],
+  "covers": ["064:k3", "064:l1", "064:l4"],
+  "spec": {
+    "illustrative": true,
+    "unit": "min",
+    "step": 1,
+    "individual": "fork",
+    "individuals": "forks",
+    "measure": {
+      "name": "distance along the template",
+      "unit": "kb",
+      "min": 0,
+      "max": 15,
+      "bins": 15
+    },
+    "stages": [
+      {"id": "up", "label": "Before the lesion", "duration": 10, "value": [0, 5], "note": "Forks travelling up to the lesion, 0 to 5 kb."},
+      {"id": "past", "label": "Past the lesion", "duration": 20, "value": [5, 15], "note": "Forks that have gone beyond the lesion, 5 to 15 kb."}
+    ],
+    "transitions": [
+      {"id": "lesion", "from": "up", "label": "the lesion"},
+      {"id": "end", "from": "past", "label": "the end of the stretch"}
+    ],
+    "story": "Replication forks reach this stretch of template one after another at a steady rate. There is a lesion in the leading-strand template. Each dot below is one fork in a sample of the forks on the stretch.",
+    "note": "The lecture says a bypass polymerase replaces the stalled one and carries on past the lesion, not how fast forks move or when it arrives, so the times and distances are illustrative. The extra mismatches it leaves are not modelled.",
+    "treatments": [
+      {
+        "id": "stuck",
+        "label": "Leave the leading-strand lesion as it is",
+        "because": "Damage in the leading strand template stops the fork, and re-priming of the leading strand is rare, so forks keep gathering in front of the lesion.",
+        "effects": [
+          {"kind": "block", "transition": "lesion"}
+        ],
+        "times": [10, 20, 30]
+      },
+      {
+        "id": "early",
+        "label": "Let a bypass polymerase take over at 15 min",
+        "because": "The bypass polymerase replaces the stalled one and synthesises across the damage, so the forks held at the lesion go on together.",
+        "effects": [
+          {"kind": "block", "transition": "lesion"},
+          {"kind": "remove-block", "transition": "lesion", "at": 15}
+        ],
+        "times": [20, 25, 30]
+      },
+      {
+        "id": "late",
+        "label": "Let a bypass polymerase take over at 25 min",
+        "because": "The bypass polymerase carries the stalled forks across the damage, and the longer they have waited the more forks have gathered to go on together.",
+        "effects": [
+          {"kind": "block", "transition": "lesion"},
+          {"kind": "remove-block", "transition": "lesion", "at": 25}
+        ],
+        "times": [30, 35]
+      }
+    ]
+  }
+}

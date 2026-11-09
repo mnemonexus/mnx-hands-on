@@ -1,0 +1,5 @@
+{
+  "extends": "../mnx-addon-kit-release/tsconfig.base.json",
+  "compilerOptions": { "resolveJsonModule": true },
+  "include": ["src"]
+}

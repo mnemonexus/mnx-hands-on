@@ -1,0 +1,80 @@
+/*
+ * Choose Your Controls. Colour means something: the accent is a condition that has been chosen, success marks a pair of
+ * explanations that has been told apart, danger marks a pair that still looks the same. Everything sits on a filled surface.
+ */
+
+.ho-ctl { display: flex; flex-direction: column; gap: 0.75rem; min-width: 0; }
+.ho-ctl__block { display: flex; flex-direction: column; gap: 0.375rem; min-width: 0; }
+.ho-ctl__head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
+.ho-ctl__count { font-size: 0.8125rem; color: var(--mnx-text-muted); font-variant-numeric: tabular-nums; }
+
+.ho-ctl__seen .ho-eyebrow, .ho-ctl__block .ho-eyebrow { color: var(--mnx-text); }
+.ho-ctl__seen { display: flex; flex-direction: column; gap: 0.25rem; padding: 0.75rem 1rem; background: var(--mnx-surface-2); border-radius: var(--mnx-radius-surface); }
+.ho-ctl__title { font-family: var(--mnx-font-heading); font-size: 1.0625rem; font-weight: 600; line-height: 1.35; }
+.ho-ctl__detail { font-size: 0.875rem; color: var(--mnx-text); }
+
+.ho-ctl__hyps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 0.5rem; }
+.ho-ctl__hyp { display: flex; gap: 0.625rem; align-items: baseline; padding: 0.5rem 0.75rem; background: var(--mnx-surface-2); border-radius: var(--mnx-radius-surface); font-size: 0.9375rem; }
+.ho-ctl__letter {
+  flex: none; min-width: 1.5rem; height: 1.5rem; padding: 0 0.25rem; display: inline-flex; align-items: center; justify-content: center;
+  border-radius: var(--mnx-radius-chip); background: var(--mnx-surface); font-weight: 700; font-size: 0.8125rem; color: var(--mnx-text);
+}
+.ho-ctl__hypname { min-width: 0; overflow-wrap: anywhere; }
+
+/* ── The conditions ────────────────────────────────────────────────────────── */
+
+.ho-ctl__conds { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.5rem; }
+@container ho (min-width: 40rem) { .ho-ctl__conds { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.ho-ctl__cond {
+  display: flex; gap: 0.75rem; align-items: flex-start; text-align: left; width: 100%; padding: 0.625rem 0.75rem; margin: 0;
+  font: inherit; color: var(--mnx-text); background: var(--mnx-surface-2); border: 0; border-radius: var(--mnx-radius-surface);
+}
+.ho-ctl__cond--pick { cursor: pointer; transition: background-color var(--mnx-duration); }
+.ho-ctl__cond--pick:hover:not(:disabled) { background: var(--mnx-accent-soft); }
+.ho-ctl__cond--pick:focus-visible { outline: 2px solid var(--mnx-focus); outline-offset: 2px; }
+.ho-ctl__cond--pick[aria-pressed="true"] { background: var(--mnx-accent-soft); }
+.ho-ctl__cond--pick[data-full="true"] { opacity: 0.65; }
+.ho-ctl__cond--pick:disabled { cursor: default; }
+.ho-ctl__tick { flex: none; width: 1.25rem; height: 1.25rem; margin-top: 0.125rem; border-radius: var(--mnx-radius-chip); background: var(--mnx-surface); display: inline-flex; align-items: center; justify-content: center; font-size: 0.875rem; font-weight: 700; }
+.ho-ctl__cond--pick[aria-pressed="true"] .ho-ctl__tick { background: var(--mnx-accent); color: var(--mnx-accent-text); }
+.ho-ctl__cond--pick[aria-pressed="true"] .ho-ctl__tick::after { content: '✓'; }
+.ho-ctl__condbody { display: flex; flex-direction: column; gap: 0.125rem; min-width: 0; }
+.ho-ctl__condname { font-size: 0.9375rem; font-weight: 600; }
+.ho-ctl__condetail { font-size: 0.8125rem; color: var(--mnx-text-muted); }
+.ho-ctl__cond--given { flex-direction: column; gap: 0.375rem; }
+.ho-ctl__prompt { font-size: 0.875rem; color: var(--mnx-text); }
+.ho-ctl__purposes { grid-template-columns: minmax(0, 1fr); }
+.ho-ctl__cond--given .mnx-choice { background: var(--mnx-surface); }
+
+.ho-runrow { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+
+/* ── The grid that fills in ────────────────────────────────────────────────── */
+
+.ho-ctl__resultbox { display: flex; flex-direction: column; gap: 0.75rem; padding: 0.625rem; background: var(--mnx-surface-2); border-radius: var(--mnx-radius-surface); overflow-x: auto; }
+.ho-ctl__grid { border-collapse: separate; border-spacing: 0.25rem; width: 100%; font-size: 0.875rem; }
+.ho-ctl__grid th, .ho-ctl__grid td { padding: 0.4375rem 0.5rem; background: var(--mnx-surface); border-radius: var(--mnx-radius-chip); vertical-align: middle; font-weight: 500; }
+.ho-ctl__corner { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--mnx-text); text-align: left; background: transparent !important; }
+.ho-ctl__colhead { text-align: center; min-width: 5.5rem; font-size: 0.8125rem; font-weight: 600; transition: background-color var(--mnx-duration); }
+.ho-ctl__colname { display: block; }
+.ho-ctl__colhead[data-running="true"] { background: var(--mnx-accent-soft); }
+.ho-ctl__flag { display: block; margin-top: 0.1875rem; font-size: 0.6875rem; font-weight: 600; color: var(--mnx-text-muted); }
+.ho-ctl__rowhead { text-align: left; font-weight: 500; }
+.ho-ctl__rowhead .ho-ctl__letter { margin-right: 0.5rem; vertical-align: middle; background: var(--mnx-surface-2); }
+.ho-ctl__cell { text-align: center; font-variant-numeric: tabular-nums; color: var(--mnx-text); }
+.ho-ctl__cell[data-filled="true"] { color: var(--mnx-text); font-weight: 600; }
+.ho-ctl__cell[data-outcome="signal"] { background: var(--mnx-accent-soft); }
+.ho-ctl__cell[data-outcome="none"] { font-weight: 400; }
+:root:not([data-mnx-motion="reduced"]) .ho-ctl__cell[data-filled="true"] { animation: ho-ctl-in 320ms ease-out both; }
+@keyframes ho-ctl-in { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: none; } }
+.ho-ctl__grid tr[data-stuck="true"] th, .ho-ctl__grid tr[data-stuck="true"] td { background: color-mix(in srgb, var(--mnx-danger) 16%, var(--mnx-surface)); }
+
+.ho-ctl__pairs { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.ho-ctl__pair { display: inline-flex; align-items: baseline; gap: 0.5rem; padding: 0.25rem 0.625rem; font-size: 0.8125rem; border-radius: var(--mnx-radius-chip); background: var(--mnx-surface); transition: background-color var(--mnx-duration); }
+.ho-ctl__pairname { font-weight: 700; }
+.ho-ctl__pair[data-state="open"] { color: var(--mnx-text-muted); }
+.ho-ctl__pair[data-state="told"] { background: color-mix(in srgb, var(--mnx-success) 20%, var(--mnx-surface)); }
+.ho-ctl__pair[data-state="stuck"] { background: color-mix(in srgb, var(--mnx-danger) 20%, var(--mnx-surface)); }
+
+.ho-ctl__fewest { font-size: 0.9375rem; padding: 0 0.25rem; }
+.ho-lesson { font-size: 0.9375rem; padding: 0 0.25rem; }
+.ho-ctl[data-phase="ask"] .ho-lesson { display: none; }

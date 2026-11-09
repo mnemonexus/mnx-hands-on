@@ -1,0 +1,115 @@
+{
+  "title": "Read the Spectrum: type a charge and a mass, a sum is read, a bad one is asked about, then the run reports",
+  "surface": "standalone",
+  "settings": {
+    "level": "1"
+  },
+  "drive": [
+    {
+      "click": "[data-activity=ho-spectrum-charge-series]"
+    },
+    {
+      "waitFor": "[data-engine=spectrum]"
+    },
+    {
+      "fill": "[data-role=charge]",
+      "text": "9"
+    },
+    {
+      "fill": "[data-role=answer]",
+      "text": "abc"
+    },
+    {
+      "click": "[data-action=check]"
+    },
+    {
+      "waitFor": "[data-role=problem]"
+    },
+    {
+      "fill": "[data-role=answer]",
+      "text": "9 * (800 - 1.00728)"
+    },
+    {
+      "click": "[data-action=check]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-engine=spectrum]"
+    },
+    {
+      "fill": "[data-role=charge]",
+      "text": "10"
+    },
+    {
+      "fill": "[data-role=answer]",
+      "text": "abc"
+    },
+    {
+      "click": "[data-action=check]"
+    },
+    {
+      "waitFor": "[data-role=problem]"
+    },
+    {
+      "fill": "[data-role=answer]",
+      "text": "10 * (800 - 1.00728)"
+    },
+    {
+      "click": "[data-action=check]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-engine=spectrum]"
+    },
+    {
+      "fill": "[data-role=charge]",
+      "text": "11"
+    },
+    {
+      "fill": "[data-role=answer]",
+      "text": "abc"
+    },
+    {
+      "click": "[data-action=check]"
+    },
+    {
+      "waitFor": "[data-role=problem]"
+    },
+    {
+      "fill": "[data-role=answer]",
+      "text": "11 * (800 - 1.00728)"
+    },
+    {
+      "click": "[data-action=check]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "expect": "complete"
+    }
+  ],
+  "expectResult": {
+    "completed": true,
+    "practice": {
+      "version": 1,
+      "activityId": "ho-spectrum-charge-series",
+      "valid": true,
+      "hintsUsed": 0,
+      "attempts": 3
+    }
+  }
+}

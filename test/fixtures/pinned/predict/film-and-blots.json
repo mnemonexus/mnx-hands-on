@@ -1,0 +1,45 @@
+{
+  "id": "ho-predict-film-and-blots",
+  "title": "What the film shows: autoradiography, northern blot and overexpression",
+  "summary": "Cells make RNA with radioactive uridine, or with an X expression vector, and the RNA is run on a gel against film. Place the bands, then see what the film really shows. Each later round changes one thing.",
+  "level": 2,
+  "minutes": 8,
+  "terms": ["autoradiography", "northern blot", "radiolabelled uridine", "gel electrophoresis", "radiolabelled probe", "expression vector", "overexpression", "Lac repressor", "IPTG induction", "housekeeping gene"],
+  "skills": ["predict-the-result"],
+  "family": "film-and-blots",
+  "cite": ["000:r3", "000:r7", "000:B2.1", "000:B2.3", "000:B2.5", "000:E.9", "000:B2.n", "000:B3.1", "000:B3.4", "000:B3.5", "000:E.13", "000:B3.n", "000:H.12", "000:H.17", "000:H.26", "000:H.27", "000:H.38"],
+  "covers": ["000:r3", "000:r7"],
+  "spec": {
+    "technique": "autoradiograph",
+    "intro": "Cells were left to make RNA for an hour. Their RNA was extracted, separated by size on a gel and laid against X-ray film. Untreated cells make about three times as much of the housekeeping RNA, H, as of X. Work out what the film shows in each lane.",
+    "lesson": "Radioactive uridine goes into every new RNA, so the film shows all the RNA that was made, darker where there is more, and nothing where the uridine was not radioactive.",
+    "axis": { "name": "length", "unit": "kb", "min": 0.6, "max": 6, "scale": "log", "bigger": "first" },
+    "species": {
+      "U": { "name": "radiolabelled uridine (U*)", "carries": ["U*"], "reagent": true },
+      "X": { "name": "RNA of interest, X", "short": "X", "size": 2.4, "labelledBy": "U", "matches": ["probe X"] },
+      "H": { "name": "housekeeping RNA", "short": "H", "size": 1.3, "labelledBy": "U", "matches": ["probe H"] }
+    },
+    "lanes": [
+      { "id": "a", "name": "Untreated cells", "detail": "Radiolabelled uridine.", "mix": { "U": 1, "X": 1, "H": 3 } },
+      { "id": "b", "name": "Untreated cells, ordinary uridine", "detail": "Uridine that is not radioactive.", "mix": { "X": 1, "H": 3 } },
+      { "id": "c", "name": "Cells with an X expression vector", "detail": "A strong promoter keeps X switched on, at about ten times its usual level. Radiolabelled uridine.", "mix": { "U": 1, "X": 10, "H": 3 } },
+      { "id": "d", "name": "Cells with an inducible X vector, no IPTG", "detail": "The Lac repressor is on the operator. Radiolabelled uridine.", "mix": { "U": 1, "X": 1, "H": 3 } },
+      { "id": "e", "name": "The same cells, with IPTG", "detail": "Radiolabelled uridine.", "mix": { "U": 1, "X": 10, "H": 3 } }
+    ],
+    "detect": { "rule": "label", "name": "U*" },
+    "changes": [
+      { "id": "northern", "say": "A northern blot instead: the film is read through a radioactive probe that matches X, added to the separated RNA and then washed off, not through the uridine label.", "lesson": "A northern blot lights up only the RNA the probe matches, however the RNA was labelled, so lane 2 shows X too.", "detect": { "rule": "probe", "name": "probe X" } },
+      { "id": "probe-h", "say": "The probe is swapped for one that matches the housekeeping RNA, H.", "lesson": "Only H matches this probe, and the cells make the same amount of H in every lane, so every lane shows the same band.", "detect": { "rule": "probe", "name": "probe H" } },
+      { "id": "no-iptg", "say": "IPTG is left out of the last lane.", "lesson": "Without IPTG the Lac repressor stays on the operator, so X is made at its usual low level.", "set": { "e": { "X": 1 } } }
+    ],
+    "why": [
+      { "kind": "blank", "lane": "b", "in": ["base", "no-iptg"], "say": "That lane had ordinary uridine, so none of its RNA is radioactive and the film stays clear.", "misconception": "Expected RNA to show on film without a radioactive label" },
+      { "kind": "absent", "species": "H", "in": ["northern"], "say": "The probe matches X only, so H does not show, even though it is in every lane.", "misconception": "Expected every RNA to show when only one is probed" },
+      { "kind": "absent", "species": "X", "in": ["probe-h"], "say": "This probe does not match X, so X does not show.", "misconception": "Expected every RNA to show when only one is probed" },
+      { "kind": "darker", "lane": "c", "species": "X", "than": { "lane": "a" }, "in": ["base", "northern", "no-iptg"], "say": "The vector makes many times more X than the cell usually does, and a darker band means more RNA." },
+      { "kind": "darker", "lane": "e", "species": "X", "than": { "lane": "d" }, "in": ["base", "northern"], "say": "IPTG frees the operator, so the inducible vector makes X and the band is darker." },
+      { "kind": "order", "species": ["X", "H"], "in": ["base"], "say": "X is the longer RNA (2.4 kb against 1.3 kb), so it moves less far through the gel." }
+    ],
+    "note": "Only two RNAs are drawn; a real lane holds many. Real bands carry some noise; here the same amount always gives the same darkness."
+  }
+}

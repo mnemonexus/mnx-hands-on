@@ -1,0 +1,27 @@
+{
+  "id": "ho-dial-first-order-decay",
+  "title": "First-order decay and half-life",
+  "summary": "Change the observed rate constant and say how the decaying absorbance moves, where the half-life lands, and how long it is in seconds.",
+  "level": 2,
+  "minutes": 6,
+  "terms": ["first order reaction", "first-order kinetics", "pseudo first order", "half-life", "observed rate constant", "integrated rate equation", "kobs"],
+  "skills": ["first-order-decay"],
+  "family": "first-order-half-life",
+  "cite": ["017:A11.2", "017:A11.5", "017:A11.6", "017:A12.3", "047:A21.11", "047:A21.12"],
+  "spec": {
+    "expression": "Abs0 * exp(-kobs * t)",
+    "formula": "Abs = Abs0 e^(-kobs t), and the half-life is the time at which Abs = Abs0 / 2",
+    "x": { "symbol": "t", "name": "time", "unit": "s", "min": 0, "max": 60, "scale": "linear" },
+    "y": { "symbol": "Abs", "name": "absorbance of the reactant", "unit": "", "min": 0, "max": 1 },
+    "parameters": [
+      { "symbol": "Abs0", "name": "starting absorbance", "unit": "", "min": 0.2, "max": 0.8, "scale": "linear", "start": [0.4, 0.5, 0.6, 0.8] },
+      { "symbol": "kobs", "name": "observed rate constant", "unit": "s^-1", "min": 0.015, "max": 0.25, "scale": "log", "start": [0.033, 0.02, 0.05, 0.1, 0.15] }
+    ],
+    "quantities": [
+      { "id": "half", "name": "half-life", "crossing": "Abs0 / 2" }
+    ],
+    "asks": [{ "measure": "y" }, { "measure": "half" }, { "measure": "half", "tolerance": 0.05 }],
+    "why": "The half-life is the time for the absorbance to fall to half its starting value, and for a first-order reaction it is ln 2 divided by kobs, so with kobs at {kobs} it is {half} (it was {half0}).",
+    "note": "Assumes absorbance is proportional to concentration, so Abs/Abs0 stands in for [A]/[A]0."
+  }
+}

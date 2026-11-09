@@ -1,0 +1,26 @@
+{
+  "id": "ho-dial-langmuir-binding",
+  "title": "Fraction bound against ligand concentration",
+  "summary": "Change the dissociation constant and say where the binding curve goes: which way the fraction bound moves, how far, and what number it lands on.",
+  "level": 1,
+  "minutes": 5,
+  "terms": ["Langmuir isotherm", "fractional saturation", "dissociation constant", "binding curve", "half-saturation", "binding affinity", "Kd"],
+  "skills": ["binding-curves"],
+  "family": "langmuir-binding",
+  "cite": ["047:A7.1", "047:A7.2", "047:A21.5", "047:A21.6"],
+  "spec": {
+    "expression": "L / (Kd + L)",
+    "formula": "fractional saturation = [PL]/[P]total = [L] / (Kd + [L])",
+    "x": { "symbol": "L", "name": "ligand concentration", "unit": "µM", "min": 0.1, "max": 10000, "scale": "log" },
+    "y": { "name": "fractional saturation", "unit": "", "min": 0, "max": 1 },
+    "parameters": [
+      { "symbol": "Kd", "name": "dissociation constant", "unit": "µM", "min": 1, "max": 5000, "scale": "log", "start": [2, 5, 20, 50, 200, 1000] }
+    ],
+    "quantities": [
+      { "id": "half", "name": "ligand concentration at half-saturation", "crossing": "0.5" }
+    ],
+    "asks": [{ "measure": "y" }, { "measure": "y" }, { "measure": "y", "tolerance": 0.05 }],
+    "why": "Kd is the ligand concentration at which half the protein is bound, so with Kd now {Kd} (it was {Kd0}) the curve is half-way up at {half}, and at {at} the fraction bound goes from {y0} to {y1}.",
+    "note": "Assumes the protein is much scarcer than the ligand, so free ligand is about the same as total ligand."
+  }
+}

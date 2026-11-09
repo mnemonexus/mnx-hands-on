@@ -1,0 +1,146 @@
+/*
+ * Predict the Result. Colour means something: the quiet text colour is the guess, the accent is the result as it really
+ * develops, success and danger mark whether a guess was in the right place. Everything sits on a filled surface.
+ */
+
+.ho-predict { display: flex; flex-direction: column; gap: 0.75rem; min-width: 0; }
+.ho-predict__stage { display: flex; flex-direction: column; gap: 0.75rem; position: relative; min-width: 0; }
+
+/* ── What is in each lane ──────────────────────────────────────────────────── */
+
+.ho-samples {
+  list-style: none; margin: 0; padding: 0.625rem 0.75rem; display: flex; flex-direction: column; gap: 0.375rem;
+  background: var(--mnx-surface-2); border-radius: var(--mnx-radius-surface); font-size: 0.875rem;
+}
+.ho-samples__item { display: flex; gap: 0.625rem; align-items: baseline; }
+.ho-samples__item[data-given="true"] .ho-samples__text { color: var(--mnx-text); }
+.ho-samples__num {
+  flex: none; min-width: 1.5rem; height: 1.5rem; padding: 0 0.25rem; display: inline-flex; align-items: center; justify-content: center;
+  border-radius: var(--mnx-radius-chip); background: var(--mnx-surface); font-weight: 700; font-size: 0.75rem; color: var(--mnx-text);
+}
+.ho-samples__text { min-width: 0; overflow-wrap: anywhere; }
+
+/* ── The bands to place ────────────────────────────────────────────────────── */
+
+.ho-palette {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; padding: 0.5rem 0.625rem;
+  background: var(--mnx-surface-2); border-radius: var(--mnx-radius-surface);
+}
+.ho-palette__label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--mnx-text); margin-right: 0.25rem; }
+.ho-chipband {
+  font: inherit; font-size: 0.875rem; font-weight: 600; padding: 0.375rem 0.75rem; min-height: 2.25rem;
+  border: 0; border-radius: var(--mnx-radius-chip); background: var(--mnx-surface); color: var(--mnx-text);
+  cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; transition: background-color var(--mnx-duration);
+}
+.ho-chipband:hover:not(:disabled) { background: var(--mnx-accent-soft); }
+.ho-chipband[aria-pressed="true"] { background: var(--mnx-accent); color: var(--mnx-accent-text); }
+.ho-chipband:focus-visible { outline: 2px solid var(--mnx-focus); outline-offset: 2px; }
+.ho-chipband:disabled { cursor: default; opacity: 0.6; }
+.ho-legend { list-style: none; margin: 0; padding: 0 0.25rem; display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; font-size: 0.8125rem; color: var(--mnx-text-muted); }
+.ho-legend strong { color: var(--mnx-text); }
+
+/* ── The lanes ─────────────────────────────────────────────────────────────── */
+
+.ho-bands-card { padding: 0.625rem 0.5rem 0.75rem; }
+.ho-bands { --ho-bands-h: 17.5rem; display: flex; gap: 0.375rem; align-items: stretch; }
+.ho-lane, .ho-ladder { display: flex; flex-direction: column; gap: 0.25rem; }
+.ho-lane { flex: 1 1 0; min-width: 0; }
+.ho-ladder { flex: 0 0 3.25rem; }
+.ho-lane__head {
+  font: inherit; font-weight: 700; font-size: 0.875rem; height: 1.75rem; padding: 0; border: 0; border-radius: var(--mnx-radius-chip);
+  background: transparent; color: var(--mnx-text); cursor: default; display: flex; align-items: center; justify-content: center;
+}
+.ho-ladder__head { font-weight: 500; font-size: 0.75rem; color: var(--mnx-text-muted); }
+[data-armed="true"] .ho-lane[data-editable="true"] .ho-lane__head { background: var(--mnx-accent-soft); cursor: pointer; }
+.ho-lane__body { position: relative; height: var(--ho-bands-h); background: var(--mnx-surface-2); border-radius: var(--mnx-radius-chip); transition: background-color var(--mnx-duration); }
+.ho-lane__body::before {
+  content: ''; position: absolute; top: 0.3125rem; left: 22%; right: 22%; height: 0.3125rem; border-radius: 999px; background: var(--mnx-surface);
+}
+.ho-lane__body[data-editable="true"] { cursor: crosshair; }
+.ho-lane__body[data-over="true"] { background: var(--mnx-accent-soft); }
+.ho-lane__run { position: absolute; inset: 1.25rem 0.1875rem 1rem; }
+.ho-ladder__body { background: transparent; }
+.ho-ladder__body::before { display: none; }
+.ho-ladder__tick { position: absolute; left: 0; right: 0; height: 0; display: flex; align-items: center; justify-content: flex-end; gap: 0.25rem; }
+.ho-ladder__label { font-size: 0.6875rem; color: var(--mnx-text-muted); font-variant-numeric: tabular-nums; transform: translateY(-0.0625rem); order: -1; flex: 1; text-align: right; }
+.ho-ladder__mark { flex: none; width: 0.5rem; height: 2px; background: var(--mnx-text-subtle); border-radius: 1px; }
+
+/* ── A band ────────────────────────────────────────────────────────────────── */
+
+.ho-band {
+  position: absolute; left: 6%; right: 6%; height: 1.5rem; margin: -0.75rem 0 0; padding: 0; border: 0; background: transparent;
+  font: inherit; color: var(--mnx-text); outline: none; touch-action: none;
+}
+.ho-band__bar { position: absolute; left: 0; right: 0; top: 0.4375rem; bottom: 0.4375rem; border-radius: var(--mnx-radius-chip); background: var(--mnx-text); opacity: var(--lv, 1); box-sizing: border-box; }
+.ho-band__tag {
+  position: absolute; left: 0; right: 0; bottom: 100%; margin-bottom: -0.25rem; text-align: center; font-size: 0.6875rem; font-weight: 600; line-height: 1;
+  color: var(--mnx-text); pointer-events: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; z-index: 6;
+  text-shadow: 0 0 3px var(--mnx-surface-2), 0 0 3px var(--mnx-surface-2), 0 0 2px var(--mnx-surface-2);
+}
+.ho-band--truth { pointer-events: none; }
+.ho-band--truth .ho-band__bar { background: var(--mnx-accent); }
+.ho-band--truth[data-missed="true"] .ho-band__bar { box-shadow: 0 0 0 2px var(--mnx-danger); }
+.ho-band--truth[data-developed="false"] .ho-band__bar, .ho-band--truth[data-developed="false"] .ho-band__tag { opacity: 0; }
+:root:not([data-mnx-motion="reduced"]) .ho-band--truth .ho-band__bar { transition: opacity 950ms cubic-bezier(0.2, 0.6, 0.3, 1); transition-delay: calc(var(--i, 0) * 90ms); }
+:root:not([data-mnx-motion="reduced"]) .ho-band--truth .ho-band__tag { transition: opacity 600ms ease-out 500ms; }
+
+.ho-band--guess { cursor: grab; z-index: 2; }
+.ho-band--guess[data-moving="true"] { opacity: 0.3; }
+.ho-band--guess:hover .ho-band__bar { top: 0.3125rem; bottom: 0.3125rem; }
+.ho-band--guess[data-selected="true"] .ho-band__bar { box-shadow: 0 0 0 3px var(--mnx-surface-2), 0 0 0 5px var(--mnx-focus); }
+.ho-band--guess:focus-visible .ho-band__bar { box-shadow: 0 0 0 3px var(--mnx-surface-2), 0 0 0 5px var(--mnx-focus); }
+.ho-band--guess[data-ghost="true"] { cursor: default; z-index: 3; pointer-events: none; }
+.ho-band--guess[data-ghost="true"] .ho-band__bar { background: transparent; opacity: 1; border: 2px dashed var(--mnx-text-muted); box-shadow: none; }
+.ho-band--guess[data-ghost="true"][data-state="met"] .ho-band__bar { border: 2px solid var(--mnx-success); }
+.ho-band--guess[data-ghost="true"][data-state="miss"] .ho-band__bar { border: 2px solid var(--mnx-danger); }
+.ho-band--guess[data-ghost="true"] .ho-band__tag { display: none; }
+[data-guess="hidden"] .ho-band--guess[data-ghost="true"] { visibility: hidden; }
+.ho-band--preview { pointer-events: none; }
+.ho-band--preview .ho-band__bar { background: transparent; border: 2px dashed var(--mnx-text-muted); opacity: 1; }
+
+.ho-float {
+  position: absolute; z-index: 20; pointer-events: none; transform: translate(-50%, -50%); padding: 0.25rem 0.625rem; font-size: 0.8125rem; font-weight: 700;
+  background: var(--mnx-accent); color: var(--mnx-accent-text); border-radius: var(--mnx-radius-chip); box-shadow: var(--mnx-shadow);
+}
+
+/* ── Darkness, the sample behind the unnamed lane, and what the run says ───── */
+
+.ho-levelrow { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; padding: 0.5rem 0.75rem; background: var(--mnx-surface-2); border-radius: var(--mnx-radius-surface); }
+.ho-levelrow__text { font-size: 0.875rem; color: var(--mnx-text); min-width: 0; }
+.ho-levelrow .ho-chips { align-items: center; }
+
+.ho-mystery { display: flex; flex-direction: column; gap: 0.5rem; padding: 0.75rem; background: var(--mnx-surface-2); border-radius: var(--mnx-radius-surface); }
+.ho-mystery__q { font-size: 0.9375rem; font-weight: 600; }
+
+.ho-runrow { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+.ho-mismatches { display: flex; flex-direction: column; gap: 0.375rem; padding: 0.625rem 0.75rem; background: var(--mnx-surface-2); border-radius: var(--mnx-radius-surface); font-size: 0.9375rem; }
+.ho-mismatches[hidden] { display: none; }
+.ho-mismatches p { margin: 0; }
+.ho-detail__title { font-weight: 600; }
+
+/* After a run each lane header carries a small tick or a cross, in the colour of right or wrong, and opens its details when pressed. */
+.ho-predict[data-phase="after"] [data-detail] { cursor: pointer; }
+.ho-lane__head[data-mark]::after, .ho-trace__head[data-mark] .ho-samples__num::after { margin-left: 0.25rem; font-weight: 700; font-size: 0.8125rem; }
+.ho-lane__head[data-mark="right"]::after, .ho-trace__head[data-mark="right"] .ho-samples__num::after { content: "✓"; color: var(--mnx-success); }
+.ho-lane__head[data-mark="wrong"]::after, .ho-trace__head[data-mark="wrong"] .ho-samples__num::after { content: "✗"; color: var(--mnx-danger); }
+.ho-lane__head[aria-pressed="true"], .ho-trace__head[aria-pressed="true"] { background: var(--mnx-accent-soft); border-radius: var(--mnx-radius-chip); }
+.ho-lane__head:focus-visible, .ho-trace__head:focus-visible { outline: 2px solid var(--mnx-focus); outline-offset: 2px; }
+.ho-trace__head[data-mark] .ho-samples__num { width: auto; }
+.ho-lesson { font-size: 0.9375rem; padding: 0 0.25rem; }
+.ho-predict[data-phase="ask"] .ho-lesson { display: none; }
+
+/* ── The trace skin ────────────────────────────────────────────────────────── */
+
+.ho-trace-card { max-width: 42rem; }
+.ho-trace__head { display: flex; align-items: center; gap: 0.625rem; padding: 0.125rem 0.375rem 0.375rem; font-size: 0.9375rem; font-weight: 600; }
+.ho-trace-card .ho-card { box-shadow: none; }
+.ho-curve--truth { stroke: var(--mnx-accent); stroke-width: 3.5; }
+.ho-curve--guess { stroke: var(--mnx-text); stroke-width: 3; }
+.ho-curve--guess[data-ghost="true"] { stroke: var(--mnx-text-muted); stroke-width: 2.5; stroke-dasharray: 1 6; }
+.ho-curve--guess[data-ghost="true"][data-state="met"] { stroke: var(--mnx-success); }
+.ho-curve--guess[data-ghost="true"][data-state="miss"] { stroke: var(--mnx-danger); }
+.ho-trace-card[data-editable="true"] .ho-m--ring .ho-m__dot { r: 6px !important; stroke-width: 3px; }
+.ho-trace-card[data-editable="true"] .ho-m--ring .ho-m__hit { r: 14px !important; }
+
+/* A ring tells its height only while it is held or focused, so a row of rings stays clean. */
+.ho-trace-card .ho-m--ring:not([data-dragging="true"]):not(:focus) .ho-m__tag { display: none; }

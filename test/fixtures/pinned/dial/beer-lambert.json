@@ -1,0 +1,24 @@
+{
+  "id": "ho-dial-beer-lambert",
+  "title": "Absorbance against concentration",
+  "summary": "Change the extinction coefficient or the path length and say where the Beer-Lambert line goes: which way, how far, and the absorbance it reads.",
+  "level": 1,
+  "minutes": 5,
+  "terms": ["Beer-Lambert law", "molar extinction coefficient", "extinction coefficient", "UV-visible absorption", "path length", "absorbance spectrum", "spectrophotometer"],
+  "skills": ["beer-lambert"],
+  "family": "beer-lambert-line",
+  "cite": ["046:A17.3", "046:A17.4", "046:A18.3", "046:A18.n"],
+  "spec": {
+    "expression": "ε * c * l * 1e-6",
+    "formula": "A = ε c l, with c in mol per litre (1 µM is 10⁻⁶ M) and l in cm",
+    "x": { "symbol": "c", "name": "concentration", "unit": "µM", "min": 0, "max": 100, "scale": "linear" },
+    "y": { "symbol": "A", "name": "absorbance", "unit": "", "min": 0, "max": 1.5 },
+    "parameters": [
+      { "symbol": "ε", "name": "molar extinction coefficient", "unit": "M^-1 cm^-1", "min": 1000, "max": 15000, "scale": "log", "start": [1500, 2500, 5690, 9200, 12000, 15000] },
+      { "symbol": "l", "name": "path length", "unit": "cm", "min": 0.1, "max": 1, "scale": "linear", "start": [0.2, 0.5, 1] }
+    ],
+    "asks": [{ "measure": "y" }, { "measure": "y" }, { "measure": "y", "tolerance": 0.05 }],
+    "why": "Absorbance is proportional to the extinction coefficient, the concentration and the path length (A = ε c l), so at {at} it goes from {y0} to {y1}.",
+    "note": "Straight only at low absorbance: stray light bends the real line down above about A = 1.5."
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "title": "Back from an activity returns to the list",
+  "surface": "standalone",
+  "settings": {
+    "level": "0"
+  },
+  "drive": [
+    {
+      "click": "[data-activity=ho-dial-langmuir-binding]"
+    },
+    {
+      "waitFor": "[data-choice=up]"
+    },
+    {
+      "click": "[data-action=back]"
+    },
+    {
+      "waitFor": "[data-view=home]"
+    }
+  ]
+}

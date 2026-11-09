@@ -1,0 +1,69 @@
+{
+  "id": "ho-grow-056-temperature-sensitive-cdc2",
+  "title": "A temperature-sensitive cdc mutant at the restrictive temperature",
+  "summary": "Yeast with a temperature-sensitive cdc2 gene is moved to the restrictive temperature. Say where the culture stops, how its DNA content looks, and how it differs from normal cells and from the mutant in the cool.",
+  "level": 2,
+  "minutes": 5,
+  "terms": ["temperature-sensitive mutants", "restrictive temperature", "permissive temperature", "cdc mutant", "cdc2", "arrests at one point in the cell cycle", "budding yeast", "G2 to M transition"],
+  "skills": ["cell-cycle-arrest"],
+  "family": "temperature-sensitive-cdc2",
+  "cite": ["056:ts1", "056:ts2", "056:ts3", "056:ts4", "056:sc1", "056:gm1"],
+  "covers": ["056:ts3", "056:sc1"],
+  "spec": {
+    "story": "A culture of budding yeast growing in the cool, none of the cells in step. Each dot below is one cell in a sample of the culture.",
+    "illustrative": true,
+    "note": "The lecture says a cdc mutant stops at one point and cdc2 is needed from G2 to M, not how long each stage lasts, so the durations are illustrative. A mutant in a gene outside the cell cycle stops at once in whatever stage it was in. That is not modelled.",
+    "unit": "min",
+    "step": 5,
+    "individual": "cell",
+    "individuals": "cells",
+    "loop": 2,
+    "measure": {
+      "name": "relative DNA content",
+      "unit": "",
+      "min": 0.5,
+      "max": 2.6,
+      "bins": 14,
+      "cv": 0.06
+    },
+    "stages": [
+      {"id": "g1", "label": "G1", "duration": 30, "value": 1, "note": "Before DNA synthesis: relative DNA content 1."},
+      {"id": "s", "label": "S", "duration": 25, "value": [1, 2], "note": "DNA content rises from 1 to 2."},
+      {"id": "g2", "label": "G2", "duration": 20, "value": 2, "note": "DNA copied: relative DNA content 2."},
+      {"id": "m", "label": "M", "duration": 15, "value": 2, "note": "Mitosis, then the cell divides."}
+    ],
+    "transitions": [
+      {"id": "g1s", "from": "g1", "label": "Start"},
+      {"id": "s-out", "from": "s"},
+      {"id": "g2m", "from": "g2", "label": "G2 to M"},
+      {"id": "div", "from": "m", "label": "division"}
+    ],
+    "treatments": [
+      {
+        "id": "ts",
+        "label": "Move a temperature-sensitive cdc2 mutant to the restrictive temperature",
+        "because": "Cdc2 is needed to go from G2 to M, and without it every cell stops at that one point, so the cells gather in G2 with a single nucleus.",
+        "effects": [
+          {"kind": "block", "transition": "g2m"}
+        ],
+        "times": [30, 45, 60]
+      },
+      {
+        "id": "wt",
+        "label": "Move normal (wild-type) cells to the restrictive temperature",
+        "because": "Wild-type cells are unaffected at the restrictive temperature and go on through the cell cycle, so the culture looks as it did.",
+        "control": true,
+        "effects": [],
+        "times": [90, 120]
+      },
+      {
+        "id": "perm",
+        "label": "Keep the cdc2 mutant at the permissive temperature",
+        "because": "At the permissive temperature a temperature-sensitive mutant grows as well as wild-type, so the culture keeps cycling and looks as it did.",
+        "control": true,
+        "effects": [],
+        "times": [90, 120]
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "story": "A workshop with identical machines. Any machine's generator feeds the shared mains.",
+  "parts": [
+    { "id": "gen", "label": "Generator" },
+    { "id": "sw", "label": "Switch" },
+    { "id": "motor", "label": "Motor" }
+  ],
+  "factors": [
+    { "id": "mains", "label": "Mains power", "short": "Mains", "madeBy": "gen", "blockedBy": ["lock"] },
+    { "id": "lock", "label": "Safety lock", "short": "Lock" }
+  ],
+  "conditions": [
+    { "id": "run", "label": "Lock off" },
+    { "id": "locked", "label": "Lock on", "has": ["lock"] }
+  ],
+  "readout": { "name": "spindle", "levels": ["stopped", "turning"] },
+  "rules": [
+    { "effect": "needs", "part": "sw", "factor": "mains", "verb": "flow through", "say": "Power flows through the switch." },
+    { "effect": "needs", "part": "motor", "say": "The motor turns the spindle." },
+    { "effect": "needs", "part": "sw", "before": "motor" }
+  ],
+  "changes": [
+    { "id": "nogen", "kind": "delete", "part": "gen", "label": "Remove the generator" },
+    { "id": "nosw", "kind": "delete", "part": "sw", "label": "Remove the switch" },
+    { "id": "nomotor", "kind": "delete", "part": "motor", "label": "Remove the motor" },
+    { "id": "swapped", "kind": "move", "part": "sw", "after": "motor", "label": "Fit the switch after the motor" },
+    { "id": "nolock", "kind": "remove", "factor": "lock", "label": "Take the lock away" }
+  ]
+}

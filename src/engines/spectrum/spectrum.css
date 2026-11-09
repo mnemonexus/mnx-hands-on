@@ -1,0 +1,115 @@
+/*
+ * Read the Spectrum. Every colour comes from the --mnx-* tokens. The spectrum sits on a filled card. Colour means something:
+ * the accent is what you have picked and the answer as it truly is, the quiet text colour is the guess, the first and second
+ * data colours are the two fragment series, and success and danger mark right and wrong (with a tick or a cross as well).
+ */
+.ho-sp { display: flex; flex-direction: column; gap: 0.75rem; min-width: 0; }
+.ho-sp__announce { font-size: 1rem; }
+.ho-sp__question { font-size: 1.1875rem; font-weight: 600; line-height: 1.35; font-family: var(--mnx-font-heading); }
+.ho-sp__card {
+  position: relative; background: var(--mnx-surface); border: var(--mnx-edge-width) solid var(--mnx-edge-color); border-radius: var(--mnx-radius-surface);
+  box-shadow: var(--mnx-shadow); padding: 0.375rem 0.375rem 0.25rem;
+}
+.ho-sp__frame { width: 100%; }
+.ho-sp__svg { display: block; width: 100%; user-select: none; -webkit-user-select: none; font-family: var(--mnx-font); overflow: visible; touch-action: manipulation; }
+.ho-sp__sim { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; justify-content: space-between; align-items: center; padding: 0 0.5rem 0.25rem; font-size: 0.75rem; color: var(--mnx-text); }
+.ho-sp__sim b { font-weight: 700; }
+.ho-sp__key { display: inline-flex; align-items: center; gap: 0.375rem; }
+.ho-sp__key i { display: inline-block; width: 0.75rem; height: 0.75rem; border-radius: 2px; }
+.ho-sp__key i[data-role="y"] { background: var(--mnx-data-1); }
+.ho-sp__key i[data-role="b"] { background: var(--mnx-data-2); }
+
+.ho-sp__area { fill: var(--mnx-surface-2); }
+.ho-sp__axis { stroke: var(--mnx-text-subtle); stroke-width: 1.5; }
+.ho-sp__grid { stroke: var(--mnx-border-inner); stroke-width: 1; opacity: 0.8; }
+.ho-sp__tick { stroke: var(--mnx-text-subtle); stroke-width: 1.5; }
+.ho-sp__ticklabel { fill: var(--mnx-text); font-size: 11px; font-variant-numeric: tabular-nums; }
+.ho-sp__axistitle { fill: var(--mnx-text); font-size: 12px; font-weight: 500; }
+
+.ho-sp__peak { outline: none; cursor: pointer; }
+.ho-sp__hit { fill: transparent; }
+.ho-sp__stem { stroke: var(--mnx-text-muted); stroke-width: 3; stroke-linecap: round; transition: stroke var(--mnx-duration); }
+.ho-sp__apex { fill: var(--mnx-text-muted); transition: fill var(--mnx-duration); }
+.ho-sp__peak[data-role="adduct"] .ho-sp__stem { stroke-width: 2.5; opacity: 0.75; }
+.ho-sp__peak[data-role="adduct"] .ho-sp__apex { opacity: 0.75; }
+.ho-sp__peak[data-role="y"] .ho-sp__stem { stroke: var(--mnx-data-1); }
+.ho-sp__peak[data-role="y"] .ho-sp__apex { fill: var(--mnx-data-1); }
+.ho-sp__peak[data-role="b"] .ho-sp__stem { stroke: var(--mnx-data-2); }
+.ho-sp__peak[data-role="b"] .ho-sp__apex { fill: var(--mnx-data-2); }
+.ho-sp__peak[data-role="after"] .ho-sp__stem { stroke: var(--mnx-accent); }
+.ho-sp__peak[data-role="after"] .ho-sp__apex { fill: var(--mnx-accent); }
+.ho-sp__peak[data-selected="true"] .ho-sp__stem { stroke: var(--mnx-accent); stroke-width: 4.5; }
+.ho-sp__peak[data-selected="true"] .ho-sp__apex { fill: var(--mnx-accent); }
+.ho-sp__peak[data-lit="true"] .ho-sp__stem { stroke: var(--mnx-accent); stroke-width: 4.5; }
+.ho-sp__peak[data-lit="true"] .ho-sp__apex { fill: var(--mnx-accent); }
+.ho-sp__peak:hover .ho-sp__stem { stroke-width: 4.5; }
+.ho-sp__focus { fill: none; stroke: var(--mnx-focus); stroke-width: 3; opacity: 0; }
+.ho-sp__peak:focus-visible .ho-sp__focus { opacity: 1; }
+.ho-sp__ring { fill: none; stroke: var(--mnx-text); stroke-width: 2.5; }
+.ho-sp__tag { fill: var(--mnx-text); font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; text-anchor: middle; paint-order: stroke; stroke: var(--mnx-surface-2); stroke-width: 4px; stroke-linejoin: round; pointer-events: none; }
+.ho-sp__tag--you { fill: var(--mnx-text); font-weight: 700; }
+.ho-sp__label { fill: var(--mnx-accent-strong); font-size: 12px; font-weight: 700; text-anchor: middle; paint-order: stroke; stroke: var(--mnx-surface-2); stroke-width: 4px; stroke-linejoin: round; pointer-events: none; }
+.ho-sp__bracket { fill: none; stroke: var(--mnx-accent); stroke-width: 2; }
+.ho-sp__bracket[data-state="met"] { stroke: var(--mnx-success); }
+.ho-sp__bracket[data-state="miss"] { stroke: var(--mnx-danger); }
+.ho-sp__ghost { fill: none; stroke: var(--mnx-text-muted); stroke-width: 2.5; stroke-dasharray: 3 3; }
+
+.ho-sp__readout { min-height: 2.75rem; padding: 0.5rem 0.75rem; background: var(--mnx-surface-2); border-radius: var(--mnx-radius-field); font-size: 0.9375rem; font-variant-numeric: tabular-nums; }
+.ho-sp__readout b { font-weight: 700; }
+
+.ho-sp__controls { display: flex; flex-direction: column; gap: 0.625rem; }
+.ho-sp__hint { font-size: 0.875rem; color: var(--mnx-text); }
+.ho-sp__zrow { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.ho-sp__btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.375rem; min-width: 2.75rem; min-height: 2.5rem; padding: 0.375rem 0.75rem; margin: 0;
+  font-family: var(--mnx-font); font-size: 0.9375rem; font-weight: 600; color: var(--mnx-text); cursor: pointer;
+  background: var(--mnx-surface-2); border: 0; border-radius: var(--mnx-radius-button); transition: background-color var(--mnx-duration);
+}
+.ho-sp__btn:hover:not(:disabled) { background: var(--mnx-accent-soft); }
+.ho-sp__btn:focus-visible { outline: 2px solid var(--mnx-focus); outline-offset: 2px; }
+.ho-sp__btn[aria-pressed="true"] { background: var(--mnx-accent); color: var(--mnx-accent-text); }
+.ho-sp__btn[data-state="correct"] { background: color-mix(in srgb, var(--mnx-success) 22%, var(--mnx-surface)); color: var(--mnx-text); box-shadow: inset 0 0 0 1.5px var(--mnx-success); }
+.ho-sp__btn[data-state="incorrect"] { background: color-mix(in srgb, var(--mnx-danger) 22%, var(--mnx-surface)); color: var(--mnx-text); box-shadow: inset 0 0 0 1.5px var(--mnx-danger); }
+.ho-sp__btn:disabled { cursor: default; }
+.ho-sp__fields { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.625rem; }
+@container ho (min-width: 34rem) { .ho-sp__fields[data-cols="2"] { grid-template-columns: minmax(0, 12rem) minmax(0, 1fr); } }
+.ho-sp__field { display: flex; flex-direction: column; gap: 0.25rem; }
+.ho-sp__field .mnx-input { width: 100%; }
+.ho-sp__line { display: flex; gap: 0.5rem; align-items: stretch; flex-wrap: wrap; }
+.ho-sp__line .mnx-input { flex: 1 1 8rem; width: auto; min-width: 0; }
+.ho-sp__preview { font-size: 0.8125rem; color: var(--mnx-text); min-height: 1.3em; font-variant-numeric: tabular-nums; }
+.ho-sp__work { padding: 0.625rem 0.75rem; background: var(--mnx-surface-2); border-radius: var(--mnx-radius-field); display: flex; flex-direction: column; gap: 0.375rem; font-size: 0.9375rem; font-variant-numeric: tabular-nums; }
+.ho-sp__work p { margin: 0; }
+.ho-sp__work p:last-child[data-kind="check"] { font-weight: 600; }
+.ho-sp__status { margin: 0; padding: 0.625rem 0.75rem; border-radius: var(--mnx-radius-field); font-size: 0.9375rem; background: var(--mnx-surface-2); }
+.ho-sp__status[data-state="met"] { background: color-mix(in srgb, var(--mnx-success) 16%, var(--mnx-surface)); box-shadow: inset 0 0 0 1.5px var(--mnx-success); }
+.ho-sp__status[data-state="miss"] { background: color-mix(in srgb, var(--mnx-danger) 16%, var(--mnx-surface)); box-shadow: inset 0 0 0 1.5px var(--mnx-danger); }
+
+.ho-sp__rows { display: flex; flex-direction: column; gap: 0.5rem; }
+.ho-sp__row { padding: 0.625rem 0.75rem; background: var(--mnx-surface-2); border-radius: var(--mnx-radius-field); display: flex; flex-direction: column; gap: 0.5rem; }
+.ho-sp__row[data-state="locked"] { opacity: 0.6; }
+.ho-sp__row[data-state="locked"] .ho-sp__res { pointer-events: none; }
+.ho-sp__row[data-state="met"] { background: color-mix(in srgb, var(--mnx-success) 14%, var(--mnx-surface-2)); }
+.ho-sp__row[data-state="miss"] { background: color-mix(in srgb, var(--mnx-danger) 14%, var(--mnx-surface-2)); }
+.ho-sp__rowhead { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.25rem 1rem; }
+.ho-sp__rowask { font-weight: 600; }
+.ho-sp__rowgap { font-variant-numeric: tabular-nums; }
+.ho-sp__resgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(3.5rem, 1fr)); gap: 0.375rem; }
+.ho-sp__res { flex-direction: column; gap: 0; min-width: 0; padding: 0.25rem 0.125rem; min-height: 2.75rem; line-height: 1.15; }
+.ho-sp__res b { font-size: 1.0625rem; }
+.ho-sp__res span { font-size: 0.6875rem; font-weight: 500; }
+.ho-sp__rowresult { font-size: 0.9375rem; }
+
+.ho-sp__ref { background: var(--mnx-surface-2); border-radius: var(--mnx-radius-field); padding: 0.5rem 0.75rem; font-size: 0.875rem; }
+.ho-sp__ref summary { cursor: pointer; font-weight: 600; }
+.ho-sp__ref summary:focus-visible { outline: 2px solid var(--mnx-focus); outline-offset: 2px; }
+.ho-sp__ref p { margin: 0.375rem 0 0; }
+.ho-sp__table { width: 100%; border-collapse: collapse; margin-top: 0.375rem; font-variant-numeric: tabular-nums; }
+.ho-sp__table th, .ho-sp__table td { text-align: left; padding: 0.1875rem 0.5rem 0.1875rem 0; font-weight: 400; }
+.ho-sp__table th { font-weight: 700; }
+.ho-sp__table--cols { columns: 2; column-gap: 1.5rem; display: block; }
+.ho-sp__table--cols tbody { display: block; }
+.ho-sp__table--cols tr { display: grid; grid-template-columns: 2.25rem 1fr auto; break-inside: avoid; gap: 0 0.5rem; }
+
+/* On a ladder the spectrum stays in view while the rows scroll beneath it. */
+.ho-sp[data-kind="ladder"] .ho-sp__card { position: sticky; top: 3.5rem; z-index: 3; }

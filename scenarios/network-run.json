@@ -1,0 +1,97 @@
+{
+  "title": "Knock It Out: say what happens to each marked part, press Run, skip to the end of the run, and the run reports one criterion per round",
+  "surface": "standalone",
+  "settings": {
+    "level": "0"
+  },
+  "drive": [
+    {
+      "click": "[data-activity=ho-network-trp-operon]"
+    },
+    {
+      "waitFor": "[data-engine=network]"
+    },
+    {
+      "click": "[data-output=tx][data-dir=up]"
+    },
+    {
+      "click": "[data-output=genes][data-dir=same]"
+    },
+    {
+      "click": "[data-output=enz][data-dir=down]"
+    },
+    {
+      "click": "[data-action=run]"
+    },
+    {
+      "click": "[data-action=skip]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-engine=network]"
+    },
+    {
+      "click": "[data-output=tx][data-dir=same]"
+    },
+    {
+      "click": "[data-output=genes][data-dir=down]"
+    },
+    {
+      "click": "[data-output=enz][data-dir=up]"
+    },
+    {
+      "click": "[data-action=run]"
+    },
+    {
+      "click": "[data-action=skip]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-engine=network]"
+    },
+    {
+      "click": "[data-output=tx][data-dir=down]"
+    },
+    {
+      "click": "[data-output=genes][data-dir=up]"
+    },
+    {
+      "click": "[data-output=enz][data-dir=same]"
+    },
+    {
+      "click": "[data-action=run]"
+    },
+    {
+      "click": "[data-action=skip]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "expect": "complete"
+    }
+  ],
+  "expectResult": {
+    "completed": true,
+    "practice": {
+      "version": 1,
+      "activityId": "ho-network-trp-operon",
+      "valid": true,
+      "hintsUsed": 0,
+      "attempts": 3
+    }
+  }
+}

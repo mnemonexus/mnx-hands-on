@@ -1,0 +1,33 @@
+{
+  "title": "A run ended early reports valid false and no criteria",
+  "surface": "standalone",
+  "settings": {
+    "level": "0"
+  },
+  "drive": [
+    {
+      "click": "[data-activity=ho-dial-langmuir-binding]"
+    },
+    {
+      "waitFor": "[data-choice=up]"
+    },
+    {
+      "click": "[data-action=end]"
+    },
+    {
+      "click": "[data-action=confirm-end]"
+    },
+    {
+      "expect": "complete"
+    }
+  ],
+  "expectResult": {
+    "completed": false,
+    "practice": {
+      "version": 1,
+      "activityId": "ho-dial-langmuir-binding",
+      "valid": false,
+      "criteria": []
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "technique": "paper chromatogram",
+  "intro": "A spot of each ink is placed near the bottom of a strip of paper, and a solvent climbs the strip. Dyes the paper grips hold back near the start; the others are carried further up.",
+  "lesson": "Each dye settles where its grip on the paper balances the pull of the solvent, so the same dye lands in the same place whichever ink it is in, and more dye makes a darker spot.",
+  "axis": { "name": "grip on the paper", "unit": "", "min": 1, "max": 100, "scale": "log", "bigger": "first", "ladder": false },
+  "species": {
+    "R": { "name": "red dye", "short": "red", "size": 40 },
+    "B": { "name": "blue dye", "short": "blue", "size": 12 },
+    "Y": { "name": "yellow dye", "short": "yellow", "size": 4 }
+  },
+  "lanes": [
+    { "id": "a", "name": "Ink 1", "mix": { "R": 1, "B": 1 } },
+    { "id": "b", "name": "Ink 2", "mix": { "B": 1, "Y": 1 } },
+    { "id": "c", "name": "Ink 3", "detail": "A little yellow.", "mix": { "R": 1, "B": 1, "Y": 0.3 } }
+  ],
+  "detect": { "rule": "all" },
+  "changes": [
+    { "id": "no-yellow", "say": "The yellow dye is left out of ink 2.", "set": { "b": { "Y": 0 } } },
+    { "id": "diluted", "say": "Ink 1 is diluted fivefold.", "set": { "a": { "R": 0.2, "B": 0.2 } } }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "title": "Read the Spectrum: pick the modification and how many from the shift, in three rounds",
+  "surface": "standalone",
+  "settings": {
+    "level": "2"
+  },
+  "drive": [
+    {
+      "click": "[data-activity=ho-spectrum-060-which-modification]"
+    },
+    {
+      "waitFor": "[data-engine=spectrum]"
+    },
+    {
+      "click": "[data-mod=phospho]"
+    },
+    {
+      "click": "[data-count=\"1\"]"
+    },
+    {
+      "click": "[data-action=check]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-engine=spectrum]"
+    },
+    {
+      "click": "[data-mod=phospho]"
+    },
+    {
+      "click": "[data-count=\"2\"]"
+    },
+    {
+      "click": "[data-action=check]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-engine=spectrum]"
+    },
+    {
+      "click": "[data-mod=phospho]"
+    },
+    {
+      "click": "[data-count=\"3\"]"
+    },
+    {
+      "click": "[data-action=check]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "expect": "complete"
+    }
+  ],
+  "expectResult": {
+    "completed": true,
+    "practice": {
+      "version": 1,
+      "activityId": "ho-spectrum-060-which-modification",
+      "valid": true,
+      "hintsUsed": 0,
+      "attempts": 3
+    }
+  }
+}

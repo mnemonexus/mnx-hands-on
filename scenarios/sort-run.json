@@ -1,0 +1,304 @@
+{
+  "title": "Sort: three rounds of statements are thrown into bins, each settles after a wrong try, and the run reports one criterion per round",
+  "surface": "standalone",
+  "settings": {
+    "level": "0"
+  },
+  "drive": [
+    {
+      "click": "[data-activity=ho-sort-033-cytochrome-p450-laccase]"
+    },
+    {
+      "waitFor": "[data-action=bin-0]"
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-action=bin-0]"
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-action=bin-0]"
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "click": "[data-action=bin-0]"
+    },
+    {
+      "wait": 350
+    },
+    {
+      "click": "[data-action=bin-1]"
+    },
+    {
+      "wait": 700
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "expect": "complete"
+    }
+  ],
+  "expectResult": {
+    "completed": true,
+    "practice": {
+      "version": 1,
+      "activityId": "ho-sort-033-cytochrome-p450-laccase",
+      "valid": true,
+      "hintsUsed": 0,
+      "attempts": 3
+    }
+  }
+}

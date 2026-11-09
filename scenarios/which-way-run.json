@@ -1,0 +1,61 @@
+{
+  "title": "Which way: pick a direction in each of three rounds, then the run reports one criterion per round",
+  "surface": "standalone",
+  "settings": {
+    "level": "0"
+  },
+  "drive": [
+    {
+      "click": "[data-activity=ho-dial-langmuir-binding]"
+    },
+    {
+      "waitFor": "[data-choice=up]"
+    },
+    {
+      "click": "[data-choice=up]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-choice=down]"
+    },
+    {
+      "click": "[data-choice=down]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "waitFor": "[data-choice=same]"
+    },
+    {
+      "click": "[data-choice=same]"
+    },
+    {
+      "waitFor": "[data-action=next]"
+    },
+    {
+      "click": "[data-action=next]"
+    },
+    {
+      "expect": "complete"
+    }
+  ],
+  "expectResult": {
+    "completed": true,
+    "practice": {
+      "version": 1,
+      "activityId": "ho-dial-langmuir-binding",
+      "valid": true,
+      "hintsUsed": 0,
+      "attempts": 3
+    }
+  }
+}

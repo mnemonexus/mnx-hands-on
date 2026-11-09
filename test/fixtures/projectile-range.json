@@ -1,0 +1,13 @@
+{
+  "expression": "v^2 * sin(2 * θ * pi / 180) / g",
+  "formula": "range = v² sin(2θ) / g, on flat ground with no air resistance",
+  "x": { "symbol": "θ", "name": "launch angle", "unit": "°", "min": 0, "max": 90, "scale": "linear" },
+  "y": { "name": "range", "unit": "m", "min": 0, "max": 120 },
+  "parameters": [
+    { "symbol": "v", "name": "launch speed", "unit": "m s^-1", "min": 20, "max": 30, "scale": "linear", "start": [20, 24, 28, 30] },
+    { "symbol": "g", "name": "gravitational field strength", "unit": "m s^-2", "min": 8, "max": 12, "scale": "linear", "start": [9.81, 10, 8, 12] }
+  ],
+  "quantities": [{ "id": "reach", "name": "smallest angle that reaches 20 m", "crossing": "20" }],
+  "asks": [{ "measure": "y" }, { "measure": "y" }, { "measure": "y" }],
+  "why": "Range grows with the square of the speed and shrinks as g grows, so at {at} it goes from {y0} to {y1}; 20 m is first reached at {reach}."
+}

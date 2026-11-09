@@ -1,0 +1,42 @@
+{
+  "id": "ho-grow-056-drug-arrest-points",
+  "title": "Where a drug holds a culture of dividing cells",
+  "summary": "A culture of dividing cells is treated with a drug. Say which stage the cells pile up in, sketch the DNA-content profile a flow cytometer would draw, then give a number. Watch the culture and the true profile build over your guess.",
+  "level": 2,
+  "minutes": 6,
+  "terms": ["flow cytometry", "intercalating dye", "forced synchrony", "chemical inhibitors", "nocodazole", "thymidine", "2N and 4N DNA content", "blocked in mitosis", "early S phase"],
+  "skills": ["cell-cycle-arrest"],
+  "family": "drug-arrest-points",
+  "cite": ["056:fc1", "056:fc2", "056:fc4", "056:fc5", "056:fc6", "056:inh1", "056:inh4", "056:inh5", "056:inh8", "056:inh11"],
+  "covers": ["056:fc6", "056:inh5", "056:inh8", "056:inh11"],
+  "spec": {
+    "story": "A culture of dividing cells, none of them in step. Each dot below is one cell in a sample of the culture.",
+    "illustrative": true,
+    "note": "The lecture gives the order of the stages and the DNA content in each (2N to 4N), not how long each lasts, so the durations are illustrative. Each dividing cell becomes two.",
+    "unit": "h",
+    "step": 0.5,
+    "individual": "cell",
+    "individuals": "cells",
+    "loop": 2,
+    "measure": { "name": "DNA content", "unit": "N", "min": 1.4, "max": 4.9, "bins": 14, "cv": 0.06 },
+    "stages": [
+      { "id": "g1", "label": "G1", "duration": 10, "value": 2, "note": "Before DNA synthesis: 2N DNA content." },
+      { "id": "es", "label": "Early S", "duration": 1, "value": [2, 2.2], "note": "DNA synthesis has just begun." },
+      { "id": "s", "label": "Later S", "duration": 7, "value": [2.2, 4], "note": "DNA content rises from 2N to 4N." },
+      { "id": "g2", "label": "G2", "duration": 4, "value": 4, "note": "DNA copied: 4N DNA content." },
+      { "id": "m", "label": "M", "duration": 0.5, "value": 4, "note": "Mitosis: still 4N until the cell divides." }
+    ],
+    "transitions": [
+      { "id": "start", "from": "g1" },
+      { "id": "es-out", "from": "es", "label": "leaving early S" },
+      { "id": "s-out", "from": "s" },
+      { "id": "g2m", "from": "g2" },
+      { "id": "div", "from": "m", "label": "division" }
+    ],
+    "treatments": [
+      { "id": "noco", "label": "Add nocodazole", "because": "Nocodazole stops microtubules forming, so cells enter mitosis but cannot pull the chromosomes apart and stay blocked there at 4N.", "effects": [{ "kind": "block", "transition": "div" }], "times": [12, 18, 24] },
+      { "id": "thy", "label": "Add thymidine", "because": "Thymidine stops the cells making DNA, so each cell that reaches early S stops there, and cells already further on carry on and divide.", "effects": [{ "kind": "block", "transition": "es-out" }], "times": [18, 24] },
+      { "id": "none", "label": "Add nothing and let the culture grow", "because": "Cells are in every stage and keep cycling, so the profile stays as it was: a tall 2N peak, a smaller 4N peak, and cells in S phase between them.", "control": true, "effects": [], "times": [12, 24] }
+    ]
+  }
+}

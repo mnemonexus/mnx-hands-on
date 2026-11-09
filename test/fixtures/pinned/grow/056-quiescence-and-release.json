@@ -1,0 +1,40 @@
+{
+  "id": "ho-grow-056-quiescence-and-release",
+  "title": "Holding cells by quiescence, then releasing them",
+  "summary": "Cells can be held out of the cycle without a drug. Say where they gather when serum is taken away or the dish is crowded, and what the culture looks like once fresh medium is added.",
+  "level": 2,
+  "minutes": 5,
+  "terms": ["quiescence", "natural synchrony", "contact inhibition", "growth factor withdrawal", "serum withdrawal", "release from quiescence", "fresh growth medium", "3T3 cells"],
+  "skills": ["cell-synchrony"],
+  "family": "quiescence-release",
+  "cite": ["056:nat1", "056:nat2", "056:nat3", "056:nat4", "057:ck2", "057:ph9"],
+  "covers": ["056:nat2", "056:nat3", "056:nat4"],
+  "spec": {
+    "story": "A dish of cultured cells (3T3-like), none of them in step. Each dot below is one cell in a sample of the dish.",
+    "illustrative": true,
+    "note": "The lecture says quiescent cells gather in one main peak and move on together when released, but not how long each stage lasts, so the durations are illustrative. Held cells wait at Start, before S.",
+    "unit": "h",
+    "step": 0.5,
+    "individual": "cell",
+    "individuals": "cells",
+    "loop": 2,
+    "measure": { "name": "DNA content", "unit": "N", "min": 1.4, "max": 4.9, "bins": 14, "cv": 0.06 },
+    "stages": [
+      { "id": "g1", "label": "G1 or G0", "duration": 10, "value": 2, "note": "Before DNA synthesis: 2N. Quiescent cells wait here." },
+      { "id": "s", "label": "S", "duration": 8, "value": [2, 4], "note": "DNA content rises from 2N to 4N." },
+      { "id": "g2", "label": "G2", "duration": 4, "value": 4, "note": "DNA copied: 4N." },
+      { "id": "m", "label": "M", "duration": 0.5, "value": 4, "note": "Mitosis, then the cell divides." }
+    ],
+    "transitions": [
+      { "id": "start", "from": "g1", "label": "Start" },
+      { "id": "s-out", "from": "s" },
+      { "id": "g2m", "from": "g2" },
+      { "id": "div", "from": "m", "label": "division" }
+    ],
+    "treatments": [
+      { "id": "serum", "label": "Take away the serum", "because": "Without growth factors cells become quiescent and wait before S, so after a time most of the dish sits in one main 2N peak.", "effects": [{ "kind": "block", "transition": "start" }], "times": [10, 14] },
+      { "id": "crowd", "label": "Let the dish become crowded", "because": "Contact inhibition makes cells quiescent too, so they gather before S and the cells further on divide and join them.", "effects": [{ "kind": "block", "transition": "start" }], "times": [12, 16] },
+      { "id": "release", "label": "Take away the serum for 8 h, then add fresh medium", "because": "Fresh medium releases the quiescent cells together, so they leave G1 as one group and cross S side by side.", "effects": [{ "kind": "block", "transition": "start" }, { "kind": "remove-block", "transition": "start", "at": 8 }], "times": [11, 14, 17] }
+    ]
+  }
+}

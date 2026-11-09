@@ -1,0 +1,45 @@
+{
+  "passages": [
+    {
+      "s": [
+        { "t": "In 509 BC the Romans expelled their last king, Tarquin the Proud.", "ok": true },
+        { "t": "They replaced him with a republic in which two consuls were elected each year.", "ok": true },
+        { "t": "The consuls led the army and presided over the Senate.", "ok": true },
+        { "t": "A consul could rule for life if the Senate agreed.", "ok": false },
+        { "t": "Former consuls then joined the Senate, where they kept great influence.", "ok": true }
+      ],
+      "correction": "A consul held office for one year only.",
+      "repairs": ["A consul could be removed only by the people at the end of ten years.", "Only one consul was elected, and he chose his own successor."]
+    },
+    {
+      "s": [
+        { "t": "The Industrial Revolution began in Britain in the second half of the eighteenth century.", "ok": true },
+        { "t": "Coal and iron were plentiful, and canals and later railways moved them cheaply.", "ok": true },
+        { "t": "Cotton spinning and weaving moved from homes into mills driven by water and then steam.", "ok": true },
+        { "t": "Watt's engine was the first steam engine ever built.", "ok": false },
+        { "t": "Towns such as Manchester grew very fast as workers moved to the mills.", "ok": true }
+      ],
+      "correction": "Watt improved the steam engine that Newcomen had already built, making it far more efficient.",
+      "repairs": ["Watt's engine ran on water power, which is why mills stayed beside rivers.", "Watt's engine was invented in the nineteenth century, after the railways."]
+    },
+    {
+      "s": [
+        { "t": "William Caxton set up the first printing press in England at Westminster in 1476.", "ok": true },
+        { "t": "Before then, books were copied by hand, which made them expensive and rare.", "ok": true },
+        { "t": "Printing made books cheaper, so more people could learn to read.", "ok": true },
+        { "t": "Caxton printed many works in English, including Chaucer's Canterbury Tales.", "ok": true }
+      ]
+    },
+    {
+      "s": [
+        { "t": "The First World War began in 1914 after the assassination of Archduke Franz Ferdinand in Sarajevo.", "ok": true },
+        { "t": "Alliances drew the great powers into the war within weeks.", "ok": true },
+        { "t": "On the Western Front the armies dug trenches that stretched from the Channel to Switzerland.", "ok": true },
+        { "t": "The war ended in 1916 when Germany signed the armistice.", "ok": false },
+        { "t": "Millions of soldiers died, and the peace settlement at Versailles in 1919 redrew the map of Europe.", "ok": true }
+      ],
+      "correction": "The war ended with the armistice of 11 November 1918.",
+      "repairs": ["The war ended in 1920, after the Treaty of Versailles was rejected.", "The war ended in 1917 when Russia and Germany signed a peace."]
+    }
+  ]
+}
